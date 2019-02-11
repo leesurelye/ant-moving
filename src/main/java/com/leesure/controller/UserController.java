@@ -1,6 +1,10 @@
 package com.leesure.controller;
 
+import com.leesure.common.result.PlainResult;
+import com.leesure.remote.intl.UserServiceApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,8 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @RequestMapping("/")
-    public String getData(){
-        return "hello word";
+    @Autowired
+    private UserServiceApi userServiceApi;
+
+    @RequestMapping("/login")
+    public  int  login(@RequestParam("username") String username,
+                       @RequestParam("password") String password){
+
+
+        return 0;
     }
 }
