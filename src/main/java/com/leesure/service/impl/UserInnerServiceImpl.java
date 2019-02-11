@@ -24,10 +24,10 @@ public class UserInnerServiceImpl implements UserService {
 
     @Override
     public int addUser(User user) throws SystemException {
+
         if (user==null){
             throw new SystemException(SystemErrorCode.SYSTEM_UNKNOWN_ERROR);
         }
-        //todo 密码加密
 
         return 0;
     }

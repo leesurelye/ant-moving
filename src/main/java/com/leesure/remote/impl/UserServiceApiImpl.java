@@ -26,7 +26,6 @@ public class UserServiceApiImpl implements UserServiceApi {
     public PlainResult<Boolean> register(User user) {
         PlainResult<Boolean> result  = new PlainResult<>();
         try{
-            //todo 验证码的处理
             String encrypt = MD5Utils.getMD5(user.getPassword());
             user.setPassword(encrypt);
             int data = userService.addUser(user);
