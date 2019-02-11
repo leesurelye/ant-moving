@@ -23,13 +23,12 @@ public class UserInnerServiceImpl implements UserService {
 
 
     @Override
-    public int addUser(User user) throws SystemException {
+    public int  addUser(User user) throws SystemException {
 
         if (user==null){
             throw new SystemException(SystemErrorCode.SYSTEM_UNKNOWN_ERROR);
         }
-
-        return 0;
+        return userDao.insert(user);
     }
 
     @Override

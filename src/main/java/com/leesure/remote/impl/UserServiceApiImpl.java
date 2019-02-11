@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * Created by yue on 2019/2/12.
  * @author yue
  */
-@Service
+@Service("UserServiceApi")
 @Slf4j
 public class UserServiceApiImpl implements UserServiceApi {
 
