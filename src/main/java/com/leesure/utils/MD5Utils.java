@@ -10,7 +10,7 @@ import java.security.MessageDigest;
  */
 public class MD5Utils {
 
-    public String getMD5(String code) throws Exception{
+    public  static  String getMD5(String code) throws Exception{
         MessageDigest md=  MessageDigest.getInstance("MD5");
         md.update(code.getBytes());
         return new BigInteger(1,md.digest()).toString(16);

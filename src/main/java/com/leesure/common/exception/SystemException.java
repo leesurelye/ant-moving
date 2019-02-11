@@ -6,6 +6,9 @@ package com.leesure.common.exception;
  */
 public class SystemException extends Exception {
 
+    private String code;
+    private String message;
+
 
     public SystemException(String message) {
         super(message);
@@ -16,6 +19,23 @@ public class SystemException extends Exception {
 
     public SystemException(SystemErrorCode code) {
         super(code.getCode());
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
 

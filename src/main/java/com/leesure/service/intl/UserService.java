@@ -8,6 +8,12 @@ import com.leesure.dao.entity.User;
  */
 public interface UserService {
 
+     /**
+      * 添加用户
+      * @param user
+      * @return
+      * @throws Exception
+      */
      int addUser(User user) throws Exception;
 
      User queryUserByPhone(String phone);

@@ -1,10 +1,21 @@
 package com.leesure.common.result;
 
+import lombok.Data;
+
 /**
  * Created by yue on 2019/2/12.
  * @author yue
  */
+@Data
 public class PlainResult<T> {
+    public PlainResult() {}
+
+    public PlainResult(String code, String msg, Boolean success) {
+        this.code = "200";
+        this.msg = "success";
+        this.success = true;
+    }
+
     /**
      * 返回码
      */

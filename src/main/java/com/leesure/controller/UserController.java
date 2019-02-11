@@ -19,7 +19,9 @@ public class UserController {
 
     @RequestMapping("/login")
     public  int  login(@RequestParam("username") String username,
-                       @RequestParam("password") String password){
+                       @RequestParam("password") String password,
+                       String code){
+
 
 
         return 0;
