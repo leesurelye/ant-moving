@@ -1,11 +1,10 @@
 package com.leesure.controller;
 
+import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
+import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.User;
 import com.leesure.remote.intl.UserServiceApi;
-import com.leesure.utils.CreateValidateCode;
-import com.leesure.utils.MD5Utils;
-import javafx.scene.paint.PhongMaterial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,6 +46,28 @@ public class UserController {
         if (result.getSuccess()){
             session.setAttribute("user",user);
         }
+        return result;
+    }
+
+    @RequestMapping("/updateUserInfo")
+    public PlainResult<Boolean> updateUseInfo(){
+        PlainResult<Boolean> result = new PlainResult<>();
+        //todo 修改个人信息
+        return result;
+    }
+
+
+    @RequestMapping("/changePassword")
+    public PlainResult<Boolean> changePassword(){
+        PlainResult<Boolean> result = new PlainResult<>();
+        //todo 修改密码请求
+        return result;
+    }
+
+    @RequestMapping("/queryOrder")
+    public PageResult<Order> queryOrder(){
+        PageResult<Order> result = new PageResult<>();
+        //todo 查询个人订单[ 包含历史纪录 未完成订单 ]
         return result;
     }
 
