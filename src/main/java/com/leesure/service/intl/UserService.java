@@ -10,13 +10,18 @@ public interface UserService {
 
      /**
       * 添加用户
-      * @param user
-      * @return
-      * @throws Exception
+      * @param user register user
+      * @return isSuccess
+      * @throws Exception exception
       */
      int addUser(User user) throws Exception;
 
      User queryUserByPhone(String phone);
 
-
+     /**
+      * user login inner  service
+      * @return isSuccess
+      * @throws Exception
+      */
+     User userLogin(String account,String password) throws Exception;
 }

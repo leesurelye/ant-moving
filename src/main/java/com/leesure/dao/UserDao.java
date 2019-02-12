@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import com.leesure.dao.entity.User;
 import com.leesure.dao.mybatis.UserMapper;
+import org.springframework.util.CollectionUtils;
 
 /**
  * @since 2019/02/11
@@ -30,5 +31,14 @@ public class UserDao{
 
     public int update(User pojo){
         return userMapper.update(pojo);
+    }
+
+
+    public User queryUserByConditions(String condition){
+        List<User> userList = userMapper.selectUserByConditions(condition);
+        if (CollectionUtils.isEmpty(userList)){
+            return null;
+        }
+        return  userList.get(0);
     }
 }

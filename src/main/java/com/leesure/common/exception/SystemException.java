@@ -9,16 +9,17 @@ public class SystemException extends Exception {
     private String code;
     private String message;
 
+    public SystemException() {}
 
     public SystemException(String message) {
         super(message);
     }
 
-    public SystemException() {
+    public SystemException(SystemErrorCode code,String message){
+        super(String.format(code.getMsg(),message));
     }
-
     public SystemException(SystemErrorCode code) {
-        super(code.getCode());
+        super(code.getMsg());
     }
 
     public String getCode() {

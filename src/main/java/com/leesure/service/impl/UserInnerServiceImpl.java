@@ -8,6 +8,7 @@ import com.leesure.service.intl.UserService;
 import com.leesure.utils.MD5Utils;
 import com.leesure.utils.PrimaryKeyUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +27,6 @@ public class UserInnerServiceImpl implements UserService {
     @Override
     public int  addUser(User user) throws SystemException {
 
-        if (user==null){
-            throw new SystemException(SystemErrorCode.SYSTEM_UNKNOWN_ERROR);
-        }
         user.setId(PrimaryKeyUtils.createUserPrimaryId());
         return userDao.insert(user);
     }
@@ -36,5 +34,17 @@ public class UserInnerServiceImpl implements UserService {
     @Override
     public User queryUserByPhone(String phone) {
         return null;
+    }
+
+    @Override
+    public User userLogin(String account,String password) throws Exception {
+        User user = userDao.queryUserByConditions(account);
+        if (user==null){
+            throw new SystemException(SystemErrorCode.USER_NOT_EXISTS,account);
+        }
+        if (!password.equals(user.getPassword())){
+            throw  new SystemException(SystemErrorCode.PASSWORD_ERROR);
+        }
+        return user;
     }
 }

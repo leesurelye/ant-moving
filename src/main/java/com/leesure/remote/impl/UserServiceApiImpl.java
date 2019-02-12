@@ -1,5 +1,6 @@
 package com.leesure.remote.impl;
 
+import com.leesure.common.exception.SystemErrorCode;
 import com.leesure.common.exception.SystemException;
 import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.User;
@@ -34,6 +35,22 @@ public class UserServiceApiImpl implements UserServiceApi {
             result.setData(false);
             result.setMsg(e.getMessage());
             log.error("register User is Exception:{}",e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public PlainResult<User> login(String account,String password) {
+        PlainResult<User> result = new PlainResult<>();
+        try{
+            User user = userService.userLogin(account,MD5Utils.getMD5(password));
+            result.setData(user);
+        }catch (SystemException se){
+            result.setError(se.getCode(),se.getMessage());
+        } catch (Exception e){
+            result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR.getCode(),
+                    e.getMessage());
+            log.error("User login Exception{}",e.getMessage());
         }
         return result;
     }

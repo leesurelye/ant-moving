@@ -15,4 +15,6 @@ public interface UserMapper {
     int insertList(@Param("pojos") List<User> pojo);
 
     int update(@Param("pojo") User pojo);
+
+    List<User> selectUserByConditions(@Param("value") String value);
 }

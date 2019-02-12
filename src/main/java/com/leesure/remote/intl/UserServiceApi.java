@@ -16,4 +16,11 @@ public interface UserServiceApi {
      */
     PlainResult<Boolean> register(User user);
 
+
+    /**
+     * 用户登陆
+     * @return isSuccess
+     */
+    PlainResult<User> login(String account,String password);
+
 }

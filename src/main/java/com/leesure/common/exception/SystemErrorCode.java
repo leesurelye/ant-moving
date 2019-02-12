@@ -9,7 +9,9 @@ public enum  SystemErrorCode {
     /**
      * system_unknown_error
      */
-    SYSTEM_UNKNOWN_ERROR("system_error","Error:[%s]");
+    SYSTEM_UNKNOWN_ERROR("system_error","Error:[%s]"),
+    USER_NOT_EXISTS("user_not_exists","用户[%s]不存在"),
+    PASSWORD_ERROR("error_password","账户密码错误");
 
     private String code;
     private String msg;

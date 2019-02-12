@@ -76,5 +76,13 @@
         </set>
         WHERE id = #{pojo.id}
     </update>
+
+    <!--  mapper extend   -->
+    <select id="selectUserByConditions" parameterType="java.lang.String" resultMap="AllColumnMap">
+
+        SELECT * FROM  "user"
+        WHERE name = #{value}
+        OR  phone =#{value}
+    </select>
 </mapper>
 
