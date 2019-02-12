@@ -18,7 +18,7 @@
     </sql>
 
     <!--auto generated Code-->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+    <insert id="insert" useGeneratedKeys="false" keyProperty="pojo.id">
         INSERT INTO user (
             `id`,
             `name`,

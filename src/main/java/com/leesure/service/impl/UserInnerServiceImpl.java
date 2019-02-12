@@ -6,6 +6,7 @@ import com.leesure.dao.UserDao;
 import com.leesure.dao.entity.User;
 import com.leesure.service.intl.UserService;
 import com.leesure.utils.MD5Utils;
+import com.leesure.utils.PrimaryKeyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ public class UserInnerServiceImpl implements UserService {
         if (user==null){
             throw new SystemException(SystemErrorCode.SYSTEM_UNKNOWN_ERROR);
         }
+        user.setId(PrimaryKeyUtils.createUserPrimaryId());
         return userDao.insert(user);
     }
 
