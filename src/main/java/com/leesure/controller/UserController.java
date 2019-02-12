@@ -64,6 +64,9 @@ public class UserController {
         return result;
     }
 
+
+
+
     @RequestMapping("/queryOrder")
     public PageResult<Order> queryOrder(){
         PageResult<Order> result = new PageResult<>();
@@ -72,4 +75,18 @@ public class UserController {
     }
 
 
+    @RequestMapping("/submitOrder")
+    public PlainResult<Boolean> submitOrder(){
+        PlainResult<Boolean> result = new PlainResult<>();
+        //todo 提交订单
+        return result;
+    }
+
+    
+    @RequestMapping("/deleteOrder")
+    public PlainResult<Boolean> deleteOrder(){
+        PlainResult<Boolean> result = new PlainResult<>();
+        //todo 删除订单
+        return result;
+    }
 }
