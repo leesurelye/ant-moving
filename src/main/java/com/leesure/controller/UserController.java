@@ -5,17 +5,22 @@ import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.User;
 import com.leesure.remote.intl.UserServiceApi;
+import com.leesure.utils.CreateValidateCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.HttpCookie;
 
 /**
  * Created by yue on 2019/2/11.
  * @author yue
  */
+@Slf4j
 @RestController
 public class UserController {
 
@@ -24,11 +29,10 @@ public class UserController {
 
     @RequestMapping("/login")
     public  PlainResult<User>  login(@RequestParam("account") String account,
-                       @RequestParam("password") String password,
-                       String code, HttpSession session){
+                                     @RequestParam("password") String password){
         PlainResult<User> result = userServiceApi.login(account, password);
         if (result.getSuccess()){
-            session.setAttribute("user",result.getData());
+             //todo 在cookie 中设置用户信息
         }
         return result;
     }
@@ -82,11 +86,25 @@ public class UserController {
         return result;
     }
 
-    
+
     @RequestMapping("/deleteOrder")
     public PlainResult<Boolean> deleteOrder(){
         PlainResult<Boolean> result = new PlainResult<>();
         //todo 删除订单
         return result;
+    }
+
+    @RequestMapping("/getValidateCode")
+    public void getValidateCode(HttpServletResponse response,
+                                HttpSession session){
+
+        try{
+            CreateValidateCode vsCode=new CreateValidateCode(100, 30, 5, 10);
+            session.setAttribute("vsCode",vsCode.getCode());
+            log.info("vsCode={}",vsCode.getCode());
+            vsCode.write(response.getOutputStream());
+        }catch (Exception e){
+            log.error("getValidateCode Exception :{}",e.getMessage());
+        }
     }
 }
