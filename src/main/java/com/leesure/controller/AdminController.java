@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by yue on 2019/2/12.
  * 面向管理员的Controller
+ * - 管理员权限使用的接口
  * @author yue
  */
 @RestController
