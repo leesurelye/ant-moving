@@ -15,7 +15,7 @@ public class PageResult<T> {
     /**
      * 当前页
      */
-    private int page =1;
+    private int current =1;
     /**
      * 每页显示数目
      */

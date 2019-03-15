@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leesure.dao.mybatis.EvaluateMapper">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.leesure.dao.entity.Evaluate">
+        <result column="id" property="id"/>
+        <result column="order_id" property="orderId"/>
+        <result column="info" property="info"/>
+        <result column="create_time" property="createTime"/>
+        <result column="rate" property="rate"/>
+        <result column="is_delete" property="isDelete"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `id`,
+        `order_id`,
+        `info`,
+        `create_time`,
+        `rate`,
+        `is_delete`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO t_evaluate (
+            `id`,
+            `order_id`,
+            `info`,
+            `create_time`,
+            `rate`,
+            `is_delete`
+        ) VALUES (
+            #{pojo.id},
+            #{pojo.orderId},
+            #{pojo.info},
+            #{pojo.createTime},
+            #{pojo.rate},
+            #{pojo.isDelete}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO t_evaluate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null"> `id`,</if>
+            <if test="pojo.orderId!=null"> `order_id`,</if>
+            <if test="pojo.info!=null"> `info`,</if>
+            <if test="pojo.createTime!=null"> `create_time`,</if>
+            <if test="pojo.rate!=null"> `rate`,</if>
+            <if test="pojo.isDelete!=null"> `is_delete`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null">#{pojo.id},</if>
+            <if test="pojo.orderId!=null">#{pojo.orderId},</if>
+            <if test="pojo.info!=null">#{pojo.info},</if>
+            <if test="pojo.createTime!=null">#{pojo.createTime},</if>
+            <if test="pojo.rate!=null">#{pojo.rate},</if>
+            <if test="pojo.isDelete!=null">#{pojo.isDelete},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO t_evaluate (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.orderId},
+            #{pojo.info},
+            #{pojo.createTime},
+            #{pojo.rate},
+            #{pojo.isDelete}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE t_evaluate
+        <set>
+            <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
+            <if test="pojo.orderId != null"> `order_id` = #{pojo.orderId}, </if>
+            <if test="pojo.info != null"> `info` = #{pojo.info}, </if>
+            <if test="pojo.createTime != null"> `create_time` = #{pojo.createTime}, </if>
+            <if test="pojo.rate != null"> `rate` = #{pojo.rate}, </if>
+            <if test="pojo.isDelete != null"> `is_delete` = #{pojo.isDelete} </if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+</mapper>
+

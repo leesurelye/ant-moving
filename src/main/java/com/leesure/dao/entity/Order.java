@@ -14,7 +14,10 @@ public class Order {
     //订单id
     private Long id;
     //用户id
-    private String userId;
+    private Long userId;
+    //关联的商店serviceId
+    private String serviceId;
+
     //用户地址
     private String address;
     //用户新地址

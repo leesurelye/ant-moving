@@ -22,6 +22,7 @@ import java.net.HttpCookie;
  */
 @Slf4j
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

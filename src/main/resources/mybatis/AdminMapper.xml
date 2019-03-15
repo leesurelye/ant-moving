@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leesure.dao.mybatis.AdminMapper">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.leesure.dao.entity.Admin">
+        <result column="id" property="id"/>
+        <result column="shop_id" property="shopId"/>
+        <result column="account" property="account"/>
+        <result column="password" property="password"/>
+        <result column="level" property="level"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `id`,
+        `shop_id`,
+        `account`,
+        `password`,
+        `level`,
+        `email`,
+        `phone`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO admin (
+            `id`,
+            `shop_id`,
+            `account`,
+            `password`,
+            `level`,
+            `email`,
+            `phone`
+        ) VALUES (
+            #{pojo.id},
+            #{pojo.shopId},
+            #{pojo.account},
+            #{pojo.password},
+            #{pojo.level},
+            #{pojo.email},
+            #{pojo.phone}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null"> `id`,</if>
+            <if test="pojo.shopId!=null"> `shop_id`,</if>
+            <if test="pojo.account!=null"> `account`,</if>
+            <if test="pojo.password!=null"> `password`,</if>
+            <if test="pojo.level!=null"> `level`,</if>
+            <if test="pojo.email!=null"> `email`,</if>
+            <if test="pojo.phone!=null"> `phone`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null">#{pojo.id},</if>
+            <if test="pojo.shopId!=null">#{pojo.shopId},</if>
+            <if test="pojo.account!=null">#{pojo.account},</if>
+            <if test="pojo.password!=null">#{pojo.password},</if>
+            <if test="pojo.level!=null">#{pojo.level},</if>
+            <if test="pojo.email!=null">#{pojo.email},</if>
+            <if test="pojo.phone!=null">#{pojo.phone},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO admin (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.shopId},
+            #{pojo.account},
+            #{pojo.password},
+            #{pojo.level},
+            #{pojo.email},
+            #{pojo.phone}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE admin
+        <set>
+            <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
+            <if test="pojo.shopId != null"> `shop_id` = #{pojo.shopId}, </if>
+            <if test="pojo.account != null"> `account` = #{pojo.account}, </if>
+            <if test="pojo.password != null"> `password` = #{pojo.password}, </if>
+            <if test="pojo.level != null"> `level` = #{pojo.level}, </if>
+            <if test="pojo.email != null"> `email` = #{pojo.email}, </if>
+            <if test="pojo.phone != null"> `phone` = #{pojo.phone} </if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+
+    <select id="selectAdminByName" resultMap="AllColumnMap">
+        select * FROM admin WHERE account=#{account}
+    </select>
+</mapper>
+

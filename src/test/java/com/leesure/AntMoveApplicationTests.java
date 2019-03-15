@@ -11,8 +11,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class AntMoveApplicationTests {
 
+
 	@Test
 	public void contextLoads() {
+
 	}
 
 }
