@@ -9,9 +9,7 @@ import lombok.Data;
  */
 @Data
 public class PlainResult<T> {
-    public PlainResult() {}
-
-    public PlainResult(String code, String msg, Boolean success) {
+    public PlainResult() {
         this.code = "200";
         this.msg = "success";
         this.success = true;

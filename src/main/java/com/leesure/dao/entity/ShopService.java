@@ -9,10 +9,10 @@ import lombok.Data;
  * 店家基本信息
  */
 @Data
-class ShopService {
+public class ShopService {
 
     //服务id
-    private Integer     id;
+    private Long     id;
     //商店id
     private Integer     shopId;
     //服务标题
@@ -20,7 +20,13 @@ class ShopService {
     //描述
     private String      desc;
 
+    //服务评价
+    private Integer    rate;
     //服务价格
     private String      price;
+
+    //服务是否下线
+    private Boolean isDelete;
+
 
 }
