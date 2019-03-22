@@ -2,7 +2,9 @@ package com.leesure.remote.impl;
 
 import com.leesure.common.exception.SystemErrorCode;
 import com.leesure.common.exception.SystemException;
+import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
+import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.User;
 import com.leesure.remote.intl.UserServiceApi;
 import com.leesure.service.intl.UserService;
@@ -53,5 +55,20 @@ public class UserServiceApiImpl implements UserServiceApi {
             log.error("User login Exception{}",e.getMessage());
         }
         return result;
+    }
+
+    @Override
+    public PlainResult<Boolean> updateInfo(User user) {
+        return null;
+    }
+
+    @Override
+    public PlainResult<Long> submitOrder(Order order) {
+        return null;
+    }
+
+    @Override
+    public PageResult<Order> getOrderList(Long userId) {
+        return null;
     }
 }

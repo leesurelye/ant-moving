@@ -16,6 +16,11 @@ public interface UserService {
       */
      int addUser(User user) throws Exception;
 
+     /**
+      * 根据用户电话查询用户信息
+      * @param phone telephone
+      * @return isSuccess
+      */
      User queryUserByPhone(String phone);
 
      /**

@@ -12,14 +12,15 @@ import java.util.List;
 @Data
 public class PageResult<T> {
 
+
     /**
      * 当前页
      */
-    private int current =1;
+    private int current;
     /**
      * 每页显示数目
      */
-    private int pageSize =10;
+    private int pageSize;
     /**
      * 总 Item 条数
      */
@@ -31,4 +32,17 @@ public class PageResult<T> {
 
     private List<T> data;
 
+
+    private String msg;
+
+    private String  code;
+
+
+
+    public PageResult() {
+        this.current=1;
+        this.pageSize=10;
+        this.code="200";
+        this.msg="success";
+    }
 }

@@ -57,7 +57,7 @@ public class UserController {
     @RequestMapping("/updateUserInfo")
     public PlainResult<Boolean> updateUseInfo(){
         PlainResult<Boolean> result = new PlainResult<>();
-        //todo 修改个人信息
+        //todo 修改个人信息,不包含修改个人密码
         return result;
     }
 
@@ -75,7 +75,7 @@ public class UserController {
     @RequestMapping("/queryOrder")
     public PageResult<Order> queryOrder(){
         PageResult<Order> result = new PageResult<>();
-        //todo 查询个人订单[ 包含历史纪录 未完成订单 ]
+        //todo 查询个人订单 [ 包含历史纪录 未完成订单 ]
         return result;
     }
 

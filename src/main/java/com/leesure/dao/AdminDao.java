@@ -19,4 +19,9 @@ public class AdminDao {
     public Admin selectAdminByName(String name){
         return mapper.selectAdminByName(name);
     }
+
+
+    public boolean addAdmin(Admin admin){
+        return mapper.insert(admin)>0;
+    }
 }

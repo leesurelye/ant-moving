@@ -1,6 +1,5 @@
 package com.leesure.common.result;
 
-import com.leesure.common.exception.SystemErrorCode;
 import lombok.Data;
 
 /**
