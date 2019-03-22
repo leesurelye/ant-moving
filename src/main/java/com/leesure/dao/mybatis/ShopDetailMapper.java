@@ -1,5 +1,6 @@
 package com.leesure.dao.mybatis;
 
+import com.leesure.dao.entity.ShopInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,6 +10,8 @@ import com.leesure.dao.entity.ShopDetail;
 @Mapper
 public interface ShopDetailMapper {
     int insert(@Param("pojo") ShopDetail pojo);
+
+    int insertShopInfo(@Param("shopInfo") ShopInfo shopInfo);
 
     int insertSelective(@Param("pojo") ShopDetail pojo);
 

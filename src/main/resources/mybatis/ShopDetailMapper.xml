@@ -44,6 +44,23 @@
         )
     </insert>
 
+    <!-- create by lee -->
+    <insert id="insertShopInfo">
+        insert into shop_detail(
+        `id`,
+        `title`,
+        `desc`,
+        `rate`,
+        `address`
+        )VALUES (
+          #{shopInfo.shopId},
+          #{shopInfo.shopTitle},
+          #{shopInfo.shopIntroduce},
+          #{shopInfo.rate},
+          #{shopInfo.shopAddress}
+        )
+    </insert>
+
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
         INSERT INTO shop_detail

@@ -4,6 +4,7 @@ import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.Order;
+import com.leesure.dao.entity.ShopInfo;
 import com.leesure.dao.entity.ShopService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shop")
 public class ShopController {
+
+
+    @RequestMapping("/register")
+    public PlainResult<Long> registerShop(ShopInfo shopInfo){
+
+
+    }
 
 
     @RequestMapping("/getOrder")

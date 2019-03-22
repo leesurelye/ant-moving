@@ -10,8 +10,12 @@ import lombok.Data;
 @Data
 public class ShopInfo {
     private Long shopId;
-    private String shopName;
+
+    private String shopTitle;
+
     private String shopIntroduce;
-    //商店评级
+
     private int rate;
+
+    private String shopAddress;
 }
