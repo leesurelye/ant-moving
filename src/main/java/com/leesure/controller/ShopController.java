@@ -6,6 +6,8 @@ import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.ShopInfo;
 import com.leesure.dao.entity.ShopService;
+import com.leesure.remote.intl.ShopServiceApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shop")
 public class ShopController {
 
+    @Autowired
+    private ShopServiceApi shopServiceApi;
+
 
     @RequestMapping("/register")
     public PlainResult<Long> registerShop(ShopInfo shopInfo){
-
-
+        PlainResult<Long> result = shopServiceApi.registerShopInfo(shopInfo);
+        return result;
     }
 
 

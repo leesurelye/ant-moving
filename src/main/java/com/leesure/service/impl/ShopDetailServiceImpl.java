@@ -24,7 +24,7 @@ public class ShopDetailServiceImpl implements ShopDetailService {
 
     @Override
     public int addShopInfo(ShopInfo shopInfo) {
-        return 0;
+        return shopDao.insertShopInfo(shopInfo);
     }
 
     @Override

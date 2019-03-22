@@ -24,11 +24,11 @@ public class ShopDetail {
 
     //商店联系电话
     private String phone;
+
+    //商家地址
+    private String address;
     //店家详情页图片 - 路径
     private List<String> imageUrls;
     //商店发布的地址
     private List<ShopService> serviceList;
-    //商家地址
-    private String address;
-
 }

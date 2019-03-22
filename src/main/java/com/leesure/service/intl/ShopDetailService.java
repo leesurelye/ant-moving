@@ -1,5 +1,6 @@
 package com.leesure.service.intl;
 
+import com.leesure.common.exception.SystemException;
 import com.leesure.dao.entity.ShopDetail;
 import com.leesure.dao.entity.ShopInfo;
 
@@ -12,7 +13,7 @@ import java.util.Map;
  */
 public interface ShopDetailService {
 
-    int addShopInfo(ShopInfo shopInfo);
+    int addShopInfo (ShopInfo shopInfo) throws SystemException;
 
 
     List<ShopInfo> getShopInfoBuConditions(Map<String,String> conditions);
