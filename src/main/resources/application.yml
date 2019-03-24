@@ -9,5 +9,13 @@ spring:
     password: 123
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+# 配置email
+  mail:
+    default-encoding: UTF-8
+    username: 1559331512@qq.com
+    password: hnxselshzpjihibc
+    host: smpt.qq.com
+
 mybatis:
   mapper-locations: classpath:mybatis/*.xml

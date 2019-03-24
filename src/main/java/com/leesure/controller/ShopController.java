@@ -1,11 +1,9 @@
 package com.leesure.controller;
 
+import com.leesure.common.result.ListResult;
 import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
-import com.leesure.dao.entity.Evaluate;
-import com.leesure.dao.entity.Order;
-import com.leesure.dao.entity.ShopInfo;
-import com.leesure.dao.entity.ShopService;
+import com.leesure.dao.entity.*;
 import com.leesure.remote.intl.ShopServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +29,27 @@ public class ShopController {
         return result;
     }
 
+    @RequestMapping("/active")
+    public PlainResult<Boolean> activeShop(ShopInfo shopInfo){
+        PlainResult<Boolean> result = shopServiceApi.activeShop(shopInfo);
+        return result;
+    }
 
+
+    @RequestMapping("/queryByConditions")
+    public ListResult<ShopInfo> queryByConditions(@RequestParam("address") String address,
+                                                  String name){
+        return shopServiceApi.getShopInfoByCondition(address,name);
+    }
+
+
+    @RequestMapping("/getShopDetail")
+    public PlainResult<ShopDetail> getShopDetail(@RequestParam("shopId") Long shopId){
+        return shopServiceApi.getShopDetailById(shopId);
+    }
     @RequestMapping("/getOrder")
     public PageResult<Order> getShopOrder(Long shopId){
-
-        //todo 获取商店所属全部订单
+        //todo 获取商店订单
         return null;
     }
 

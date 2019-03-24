@@ -100,5 +100,10 @@
         </set>
         WHERE id = #{pojo.id}
     </update>
+
+    <!--created by lee-->
+    <select id="selectShopServiceByShopId" resultMap="AllColumnMap">
+        SELECT * FROM shop_service WHERE  shop_id = #{shopId}
+    </select>
 </mapper>
 

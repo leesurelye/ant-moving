@@ -1,5 +1,6 @@
 package com.leesure.remote.impl;
 
+import com.leesure.common.exception.SystemErrorCode;
 import com.leesure.common.exception.SystemException;
 import com.leesure.common.result.ListResult;
 import com.leesure.common.result.PlainResult;
@@ -22,7 +23,6 @@ import java.util.List;
 @Slf4j
 public class ShopServiceApiImpl implements ShopServiceApi {
 
-
     @Autowired
     private ShopDetailService detailService;
 
@@ -32,7 +32,8 @@ public class ShopServiceApiImpl implements ShopServiceApi {
         PlainResult<Long> result = new PlainResult<>();
         //check param
         try{
-            detailService.addShopInfo(shopInfo);
+            Long shopId = detailService.addShopInfo(shopInfo);
+            result.setData(shopId);
         }catch (SystemException exception){
             result.setMsg(exception.getMessage());
             result.setCode(exception.getCode());
@@ -46,12 +47,55 @@ public class ShopServiceApiImpl implements ShopServiceApi {
     }
 
     @Override
-    public ListResult<ShopInfo> getShopInfoByCondition(List<String> conditions) {
-        return null;
+    public PlainResult<Boolean> activeShop(ShopInfo shopInfo){
+        PlainResult<Boolean> result = new PlainResult<>();
+        try{
+            boolean data = detailService.updateShopInfo(shopInfo);
+            result.setData(data);
+        }catch (SystemException exception){
+            result.setCode(exception.getCode());
+            result.setMsg(exception.getMessage());
+            result.setSuccess(false);
+        }catch (Exception e){
+            result.setCode(SystemErrorCode.SYSTEM_UNKNOWN_ERROR.getCode());
+            result.setMsg(e.getMessage());
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+
+    @Override
+    public ListResult<ShopInfo> getShopInfoByCondition(String address,String value) {
+        ListResult<ShopInfo> result = new ListResult<>();
+        try{
+            List<ShopInfo> data = detailService.getShopInfoByAddress(address,value);
+            result.setData(data);
+        }catch (SystemException exception){
+            result.setCode(exception.getCode());
+            result.setMsg(exception.getMessage());
+        }catch (Exception e){
+            result.setCode(SystemErrorCode.SYSTEM_UNKNOWN_ERROR.getCode());
+            result.setMsg(e.getMessage());
+        }
+        return result;
     }
 
     @Override
     public PlainResult<ShopDetail> getShopDetailById(Long shopId) {
-        return null;
+        PlainResult<ShopDetail> result = new PlainResult<>();
+        try{
+            ShopDetail data = detailService.getShopDetailById(shopId);
+            result.setData(data);
+        }catch (SystemException exception){
+            result.setSuccess(false);
+            result.setCode(exception.getCode());
+            result.setMsg(exception.getMessage());
+        }catch (Exception e){
+            result.setCode(SystemErrorCode.SYSTEM_UNKNOWN_ERROR.getCode());
+            result.setMsg(e.getMessage());
+            result.setSuccess(false);
+        }
+        return result;
     }
 }

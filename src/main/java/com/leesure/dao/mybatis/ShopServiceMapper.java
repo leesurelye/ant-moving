@@ -16,4 +16,6 @@ public interface ShopServiceMapper {
     int insertList(@Param("pojos") List<ShopService> pojo);
 
     int update(@Param("pojo") ShopService pojo);
+
+    List<ShopService> selectShopServiceByShopId(@Param("shopId") Long shopId);
 }

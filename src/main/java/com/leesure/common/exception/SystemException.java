@@ -17,6 +17,8 @@ public class SystemException extends Exception {
 
     public SystemException(SystemErrorCode code,String message){
         super(String.format(code.getMsg(),message));
+        this.code =code.getCode();
+        this.message= String.format(code.getMsg(),message);
     }
     public SystemException(SystemErrorCode code) {
         super(code.getMsg());

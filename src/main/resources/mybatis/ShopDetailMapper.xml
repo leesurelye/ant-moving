@@ -12,6 +12,15 @@
         <result column="address" property="address"/>
     </resultMap>
 
+    <resultMap id="ShopInfoResultMap" type="com.leesure.dao.entity.ShopInfo">
+        <result column="id" property="shopId"/>
+        <result column="title" property="shopTitle"/>
+        <result column="desc" property="shopIntroduce"/>
+        <result column="rate" property="rate"/>
+        <result column="phone" property="phone"/>
+        <result column="shop_email" property="shopEmail"/>
+        <result column="address" property="shopAddress"/>
+    </resultMap>
     <!--auto generated Code-->
     <sql id="all_column">
         `id`,
@@ -22,6 +31,10 @@
         `phone`,
         `address`
     </sql>
+
+    <select id="selectOne" resultMap="AllColumnMap">
+        SELECT * FROM  shop_detail WHERE id=#{shopId}
+    </select>
 
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
@@ -117,5 +130,37 @@
         </set>
         WHERE id = #{pojo.id}
     </update>
+
+    <!--created by lee-->
+    <update id="updateShopInfo">
+        UPDATE shop_detail
+        <set>
+            <if test="shopInfo.rate !=null">`rate` = #{shopInfo.rate},</if>
+            <if test="shopInfo.shopTitle !=null">`title` = #{shopInfo.shopTitle} ,</if>
+            <if test="shopInfo.shopIntroduce !=null"> `desc` = #{shopInfo.shopIntroduce},</if>
+            <if test="shopInfo.shopAddress !=null">`address` = #{shopInfo.shopAddress},</if>
+            <if test="shopInfo.phone !=null">`phone` = #{shopInfo.phone}, </if>
+            <if test="shopInfo.shopEmail!=null">`shop_email`=#{shopInfo.shopEmail}</if>
+        </set>
+        WHERE  id=#{shopInfo.shopId}
+    </update>
+
+
+    <select id="selectAllShopInfo" resultMap="ShopInfoResultMap">
+        SELECT * FROM shop_detail
+    </select>
+
+    <select id="selectShopInfoByConditions" resultMap="ShopInfoResultMap">
+        SELECT * FROM shop_detail WHERE
+        <foreach collection="java.util.Map" item="item" open="" close="and">
+            ${item.key} = #{item.value}
+        </foreach>
+    </select>
+
+    <select id="selectShopInfoByAddress" resultMap="ShopInfoResultMap">
+        SELECT * FROM shop_detail
+        WHERE address LIKE #{address} OR
+        title LIKE #{name} OR shop_detail.desc LIKE #{name}
+    </select>
 </mapper>
 

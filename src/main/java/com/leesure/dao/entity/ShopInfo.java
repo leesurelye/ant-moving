@@ -18,4 +18,9 @@ public class ShopInfo {
     private int rate;
 
     private String shopAddress;
+
+    private String phone;
+
+    private String shopEmail;
+
 }
