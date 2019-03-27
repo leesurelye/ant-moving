@@ -11,6 +11,7 @@ import java.util.Map;
 
 /**
  * Created by yue on 2019/3/15.
+ *
  * @author yue
  */
 @Service
@@ -20,21 +21,22 @@ public class EvaluateDao {
     private EvaluateMapper mapper;
 
 
-    public int addEvaluate(Evaluate evaluate){
+    public int addEvaluate(Evaluate evaluate) {
         return mapper.insert(evaluate);
     }
 
 
-    public List<Evaluate> queryEvaluatePagination(Map<String ,Long> idMap){
-        if (CollectionUtils.isEmpty(idMap)){
+    public List<Evaluate> queryEvaluatePagination(Map<String, Long> idMap,
+                                                  int page, int pageSize) {
+        if (CollectionUtils.isEmpty(idMap)) {
             return null;
         }
-        return mapper.selectByIdMap(idMap);
+        return mapper.selectByIdMap(idMap, (page - 1) * pageSize, pageSize);
     }
 
 
-    public int countEvaluateByID(Map<String,Long> map){
-        if (CollectionUtils.isEmpty(map)){
+    public int countEvaluateByID(Map<String, Long> map) {
+        if (CollectionUtils.isEmpty(map)) {
             return 0;
         }
         return mapper.countEvaluate(map);

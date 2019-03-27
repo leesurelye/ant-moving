@@ -1,5 +1,6 @@
 package com.leesure.service.intl;
 
+import com.leesure.common.exception.SystemException;
 import com.leesure.dao.entity.Admin;
 
 /**
@@ -24,5 +25,12 @@ public interface AdminService {
     boolean addAdmin(Admin admin);
 
 
+    /**
+     * 关闭订单
+     * @param orderId  订单号
+     * @return
+     */
+    boolean closeOrder(Long orderId)
+            throws SystemException;
 
 }

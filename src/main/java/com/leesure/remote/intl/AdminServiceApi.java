@@ -3,6 +3,7 @@ package com.leesure.remote.intl;
 import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Admin;
 import com.leesure.dao.entity.ShopDetail;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
  * Created by yue on 2019/3/15.
@@ -36,5 +37,11 @@ public interface AdminServiceApi {
     PlainResult<Boolean> updateShopInfo(ShopDetail shopDetail);
 
 
+    /**
+     * 关闭订单
+     * @param id 订单号
+     * @return 是否关闭成功
+     */
+    PlainResult<Boolean> closeOrder(Long id);
 
 }

@@ -27,10 +27,7 @@ public class PageResult<T>  extends BasicResult{
      * 总 Item 条数
      */
     private int totalCount;
-    /**
-     * 总页数
-     */
-    private int totalPage;
+
 
     private List<T> data;
 

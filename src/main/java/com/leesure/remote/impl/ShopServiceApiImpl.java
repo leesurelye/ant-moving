@@ -113,8 +113,10 @@ public class ShopServiceApiImpl implements ShopServiceApi {
             int total = detailService.countEvaluateByShopID(shopId);
             result.setTotalCount(total);
         }catch (SystemException exception){
+            result.setError(exception.getCode(),exception.getMessage());
             log.error(exception.getMessage(),exception);
         }catch (Exception e){
+            result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,e.getMessage());
             log.error(e.getMessage(),e);
         }
         return result;

@@ -56,14 +56,6 @@ public class ShopController {
         return null;
     }
 
-    @RequestMapping("/changeOrderState")
-    public PlainResult<Boolean> changeOrderState(@RequestParam("orderId") Long orderId,
-                                                 @RequestParam("status")  String status){
-
-        //todo 更新订单状态
-        return null;
-    }
-
 
     @RequestMapping("/getEvaluateList")
     public PageResult<Evaluate> getEvaluateList(@RequestParam("shopId") Long shopId,

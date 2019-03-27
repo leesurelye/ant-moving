@@ -18,7 +18,9 @@ public interface EvaluateMapper {
 
     int update(@Param("pojo") Evaluate pojo);
 
-    List<Evaluate> selectByIdMap(@Param("map")Map<String,Long> map);
+    List<Evaluate> selectByIdMap(@Param("map")Map<String,Long> map,
+                                 @Param("begin") int begin,
+                                 @Param("pageSize") int pageSize);
 
     int countEvaluate(@Param("map") Map<String,Long> map);
 }

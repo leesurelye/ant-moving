@@ -99,6 +99,7 @@
         <foreach collection="map" index="key" item="value">
             ${key} = #{value}
         </foreach>
+        limit ${begin},${pageSize}
     </select>
 
     <select id="countEvaluate" resultType="java.lang.Integer">

@@ -5,6 +5,7 @@ import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Admin;
 import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.Order;
+import com.leesure.remote.intl.AdminServiceApi;
 import com.leesure.remote.intl.ShopServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ public class AdminController {
 
     @Autowired
     private ShopServiceApi shopServiceApi;
+
+    @Autowired
+    private AdminServiceApi adminServiceApi;
 
 
     @RequestMapping("/login")
@@ -85,11 +89,11 @@ public class AdminController {
     }
 
 
-    @RequestMapping("/changeOrderState")
-    public PlainResult<Boolean> changeOrderState(Order order){
-        //todo 更新订单状态 -管理员才有的功能
-        return null;
+    @RequestMapping("/closeOrder")
+    public PlainResult<Boolean> closeOrder(@RequestParam("orderId") Long orderId){
 
+
+        return null;
     }
 
 }
