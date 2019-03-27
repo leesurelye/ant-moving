@@ -25,7 +25,7 @@
 
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO admin (
+        INSERT INTO t_admin (
             `id`,
             `shop_id`,
             `account`,
@@ -46,7 +46,7 @@
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO admin
+        INSERT INTO t_admin
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id!=null"> `id`,</if>
             <if test="pojo.shopId!=null"> `shop_id`,</if>
@@ -70,7 +70,7 @@
 
     <!--auto generated Code-->
     <insert id="insertList">
-        INSERT INTO admin (
+        INSERT INTO t_admin (
         <include refid="all_column"/>
         )VALUES
         <foreach collection="pojos" item="pojo" index="index" separator=",">
@@ -88,7 +88,7 @@
 
     <!--auto generated Code-->
     <update id="update">
-        UPDATE admin
+        UPDATE t_admin
         <set>
             <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
             <if test="pojo.shopId != null"> `shop_id` = #{pojo.shopId}, </if>
@@ -102,7 +102,7 @@
     </update>
 
     <select id="selectAdminByName" resultMap="AllColumnMap">
-        select * FROM admin WHERE account=#{account}
+        select * FROM t_admin WHERE account=#{account}
     </select>
 </mapper>
 

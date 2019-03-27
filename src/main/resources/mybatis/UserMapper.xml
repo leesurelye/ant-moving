@@ -19,7 +19,7 @@
 
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="false" keyProperty="pojo.id">
-        INSERT INTO user (
+        INSERT INTO t_user (
             `id`,
             `name`,
             `password`,
@@ -34,7 +34,7 @@
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO user
+        INSERT INTO t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id!=null">`id`,</if>
             <if test="pojo.name!=null">`name`,</if>
@@ -52,7 +52,7 @@
 
     <!--auto generated Code-->
     <insert id="insertList">
-        INSERT INTO user (
+        INSERT INTO t_user (
         <include refid="all_column"/>
         )VALUES
         <foreach collection="pojos" item="pojo" index="index" separator=",">
@@ -67,7 +67,7 @@
 
     <!--auto generated Code-->
     <update id="update">
-        UPDATE user
+        UPDATE t_user
         <set>
             <if test="pojo.id != null">`id` = #{pojo.id},</if>
             <if test="pojo.name != null">`name` = #{pojo.name},</if>
@@ -80,7 +80,7 @@
     <!--  mapper extend   -->
     <select id="selectUserByConditions" parameterType="java.lang.String" resultMap="AllColumnMap">
 
-        SELECT * FROM  user
+        SELECT * FROM  t_user
         WHERE name = #{value}
         OR  phone =#{value}
     </select>
