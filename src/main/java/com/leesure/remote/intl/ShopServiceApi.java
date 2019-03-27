@@ -1,9 +1,9 @@
 package com.leesure.remote.intl;
 
-import com.leesure.common.exception.SystemException;
 import com.leesure.common.result.ListResult;
+import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
-import com.leesure.dao.entity.Order;
+import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.ShopDetail;
 import com.leesure.dao.entity.ShopInfo;
 
@@ -46,4 +46,10 @@ public interface ShopServiceApi {
     PlainResult<ShopDetail> getShopDetailById(Long shopId);
 
 
+    /**
+     * 获取商店评价列表
+     * @param shopId 商店id
+     * @return 评价列表
+     */
+    PageResult<Evaluate> getShopEvaluate(Long shopId,Integer page,Integer pageSize);
 }

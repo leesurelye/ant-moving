@@ -1,10 +1,12 @@
 package com.leesure.remote.impl;
 
+import ch.qos.logback.core.rolling.helper.IntegerTokenConverter;
 import com.leesure.common.exception.SystemErrorCode;
 import com.leesure.common.exception.SystemException;
 import com.leesure.common.result.ListResult;
+import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
-import com.leesure.dao.entity.Order;
+import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.ShopDetail;
 import com.leesure.dao.entity.ShopInfo;
 import com.leesure.remote.intl.ShopServiceApi;
@@ -27,7 +29,6 @@ public class ShopServiceApiImpl implements ShopServiceApi {
 
     @Autowired
     private ShopDetailService detailService;
-
 
     @Autowired
     private OrderService orderService;
@@ -99,6 +100,22 @@ public class ShopServiceApiImpl implements ShopServiceApi {
         }catch (Exception e){
             result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR.getCode(),
                     e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public PageResult<Evaluate> getShopEvaluate(Long shopId, Integer page, Integer pageSize) {
+        PageResult<Evaluate> result = new PageResult<>();
+        try{
+            List<Evaluate> data = detailService.getEvaluateByShopID(shopId, page, pageSize);
+            result.setData(data);
+            int total = detailService.countEvaluateByShopID(shopId);
+            result.setTotalCount(total);
+        }catch (SystemException exception){
+            log.error(exception.getMessage(),exception);
+        }catch (Exception e){
+            log.error(e.getMessage(),e);
         }
         return result;
     }

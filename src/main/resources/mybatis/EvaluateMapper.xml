@@ -92,5 +92,20 @@
         </set>
         WHERE id = #{pojo.id}
     </update>
+
+
+    <select id="selectByIdMap" resultMap="AllColumnMap">
+        SELECT * FROM t_evaluate WHERE
+        <foreach collection="map" index="key" item="value">
+            ${key} = #{value}
+        </foreach>
+    </select>
+
+    <select id="countEvaluate" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM t_evaluate WHERE
+        <foreach collection="map" index="key" item="value">
+            ${key}=#{value}
+        </foreach>
+    </select>
 </mapper>
 

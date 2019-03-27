@@ -5,6 +5,8 @@ import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Admin;
 import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.Order;
+import com.leesure.remote.intl.ShopServiceApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
+
+    @Autowired
+    private ShopServiceApi shopServiceApi;
+
 
     @RequestMapping("/login")
     public PlainResult<Boolean> adminLogin(@RequestParam("name") String name,

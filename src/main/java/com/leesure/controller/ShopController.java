@@ -50,7 +50,6 @@ public class ShopController {
 
 
 
-    //todo
     @RequestMapping("/getOrder")
     public PageResult<Order> getShopOrder(Long shopId){
         //todo 获取商店订单
@@ -67,9 +66,10 @@ public class ShopController {
 
 
     @RequestMapping("/getEvaluateList")
-    public PageResult<Evaluate> getEvaluateList(){
-        //todo 查询评价单列表
-        return null;
+    public PageResult<Evaluate> getEvaluateList(@RequestParam("shopId") Long shopId,
+                                                Integer page,Integer pageSize){
+        return  shopServiceApi.getShopEvaluate(shopId,page,pageSize);
+
     }
 
     @RequestMapping("/getServiceList")

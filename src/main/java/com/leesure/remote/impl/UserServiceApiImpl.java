@@ -95,7 +95,7 @@ public class UserServiceApiImpl implements UserServiceApi {
             result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,e.getMessage());
             log.error(e.getMessage(),e);
         }
-        return null;
+        return result;
     }
 
 
