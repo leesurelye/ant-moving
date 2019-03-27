@@ -1,6 +1,7 @@
 package com.leesure.common.result;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -10,20 +11,8 @@ import java.util.List;
  * @author yue
  */
 @Data
-public class ListResult<T> {
-
-    private String code;
-
-    private String msg;
+@EqualsAndHashCode
+public class ListResult<T> extends BasicResult {
 
     private List<T> data;
-
-    private boolean success;
-
-
-    public ListResult() {
-        this.code = "200";
-        this.msg="success";
-        this.success=true;
-    }
 }

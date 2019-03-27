@@ -29,4 +29,6 @@ public class Order {
     private Integer totalPay;
     //是否删除
     private Boolean isDeleted;
+
+    private String orderState;
 }

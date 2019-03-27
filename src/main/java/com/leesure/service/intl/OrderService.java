@@ -1,7 +1,10 @@
 package com.leesure.service.intl;
 
 import com.leesure.common.exception.SystemException;
+import com.leesure.common.sysenum.OrderEnum;
 import com.leesure.dao.entity.Order;
+
+import java.util.List;
 
 /**
  * Created by yue on 2019/3/27.
@@ -33,4 +36,31 @@ public interface OrderService {
      * @return 是否产出成功
      */
     boolean deleteOrderById(Long id);
+
+    /**
+     * 分页查询订单
+     * @param page 当前页面 ，默认为1
+     * @param pageSize 当前页面大小，默认为10
+     * @return 查询列表
+     */
+    List<Order> queryOrderPagination(int page ,int pageSize,Long userId)
+            throws SystemException;
+
+    /**
+     * 获取用户订单总数量
+     * @param id id
+     * @return 订单总数量
+     */
+    int countOrder(Long id);
+
+
+    /**
+     * 更新订单状态
+     * @param orderState 订单状态枚举类
+     * @param orderId  订单id
+     * @return  是否修改成功
+     */
+    boolean updateOrderState(Long orderId , OrderEnum orderState)
+            throws SystemException;
+
 }

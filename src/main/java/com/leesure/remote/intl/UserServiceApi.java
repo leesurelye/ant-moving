@@ -44,18 +44,13 @@ public interface UserServiceApi {
 
 
     /**
-     * 提交订单-创建订单
-     * @return 订单编号
-     */
-    PlainResult<Long> submitOrder(Order order);
-
-
-    /**
      * 获取个人历史订单纪录
+     * @param pageSize  页面大小
+     * @param page 当前页面
      * @param userId 用户id
      * @return 订单纪录
      */
-    PageResult<Order> getOrderList(Long userId);
+    PageResult<Order> getOrderList(Long userId,Integer page,Integer pageSize) ;
 
     /**
      * 创建订单信息
@@ -65,6 +60,13 @@ public interface UserServiceApi {
     PlainResult<Order> createOrder(Order order);
 
 
+
+    PlainResult<Boolean> submitOrder(Long orderId);
+    /**
+     * 删除订单 - 逻辑删除
+     * @param orderId 订单Id
+     * @return 返回结果
+     */
     PlainResult<Boolean> removeOrder(Long orderId);
 
 }

@@ -105,6 +105,7 @@
             <if test="pojo.createTime != null"> `create_time` = #{pojo.createTime}, </if>
             <if test="pojo.totalPay != null"> `total_pay` = #{pojo.totalPay}, </if>
             <if test="pojo.isDeleted != null"> `is_deleted` = #{pojo.isDeleted} </if>
+            <if test="pojo.orderState !=null">`order_state` = #{pojo.orderState}</if>
         </set>
         WHERE id = #{pojo.id}
     </update>
@@ -114,5 +115,21 @@
         SELECT * FROM t_order WHERE id=#{id}
     </select>
 
+    <select id="selectOrder" resultMap="AllColumnMap" >
+        SELECT * FROM t_order WHERE
+        <foreach collection="map" index="key" item="value">
+            ${key} = #{value}
+        </foreach>
+        LIMIT ${begin} ,${pageSize}
+    </select>
+
+
+    <select id="countByCondition" resultType="java.lang.Integer">
+        SELECT count(id) FROM t_order WHERE
+        <foreach collection="map" index="key" item="value"
+                 open="" close=" and ">
+            ${key} = #{value}
+        </foreach>
+    </select>
 </mapper>
 

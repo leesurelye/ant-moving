@@ -6,7 +6,9 @@ package com.leesure.common.sysenum;
  */
 public enum OrderEnum {
 
-    CLOSE(4,"close");
+    CLOSE(3,"CLOSE"),
+    UNCOMMIT(1,"UNCOMMIT"),
+    COMMIT(2,"COMMIT");
 
 
     private String status;

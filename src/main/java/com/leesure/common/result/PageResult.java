@@ -1,6 +1,7 @@
 package com.leesure.common.result;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -10,7 +11,8 @@ import java.util.List;
  * @author yue
  */
 @Data
-public class PageResult<T> {
+@EqualsAndHashCode
+public class PageResult<T>  extends BasicResult{
 
 
     /**
@@ -33,16 +35,8 @@ public class PageResult<T> {
     private List<T> data;
 
 
-    private String msg;
-
-    private String  code;
-
-
-
     public PageResult() {
         this.current=1;
         this.pageSize=10;
-        this.code="200";
-        this.msg="success";
     }
 }

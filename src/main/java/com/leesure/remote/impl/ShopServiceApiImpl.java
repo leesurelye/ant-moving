@@ -90,9 +90,7 @@ public class ShopServiceApiImpl implements ShopServiceApi {
     @Override
     public PlainResult<ShopDetail> getShopDetailById(Long shopId) {
         PlainResult<ShopDetail> result = new PlainResult<>();
-        if (shopId==null){
-            return result.setError(SystemErrorCode.MISS_PARAM,"shopId");
-        }
+
         try{
             ShopDetail data = detailService.getShopDetailById(shopId);
             result.setData(data);

@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Created by yue on 2019/2/11.
+ *
  * @author yue
  */
 @Slf4j
@@ -36,35 +37,34 @@ public class UserController {
     private MessageSendUtils messageSendUtils;
 
 
-
     @RequestMapping("/login")
-    public  PlainResult<User>  login(@RequestParam("account") String account,
-                                     @RequestParam("password") String password){
+    public PlainResult<User> login(@RequestParam("account") String account,
+                                   @RequestParam("password") String password) {
         PlainResult<User> result = userServiceApi.login(account, password);
-        if (result.getSuccess()){
-             //todo 在cookie 中设置用户信息
+        if (result.getSuccess()) {
+            //todo 在cookie 中设置用户信息
         }
         return result;
     }
 
     @RequestMapping("/register")
     public PlainResult<Boolean> register(@RequestParam("name") String name,
-                        @RequestParam("password") String password,
-                        @RequestParam("phone") String phone,
-                        HttpSession session){
+                                         @RequestParam("password") String password,
+                                         @RequestParam("phone") String phone,
+                                         HttpSession session) {
         User user = new User();
         user.setPassword(password);
         user.setPhone(phone);
         user.setName(name);
         PlainResult<Boolean> result = userServiceApi.register(user);
-        if (result.getSuccess()){
-            session.setAttribute("user",user);
+        if (result.getSuccess()) {
+            session.setAttribute("user", user);
         }
         return result;
     }
 
     @RequestMapping("/updateUserInfo")
-    public PlainResult<Boolean> updateUseInfo(){
+    public PlainResult<Boolean> updateUseInfo() {
         PlainResult<Boolean> result = new PlainResult<>();
         //todo 修改个人信息,不包含修改个人密码
         return result;
@@ -72,12 +72,12 @@ public class UserController {
 
 
     @RequestMapping("/changePassword")
-    public PlainResult<Boolean> changePassword(@RequestParam("userId")Long userId,
+    public PlainResult<Boolean> changePassword(@RequestParam("userId") Long userId,
                                                String email,
-                                               @RequestParam("newPwd") String newPwd){
+                                               @RequestParam("newPwd") String newPwd) {
         String validateCode = ValidateCodeFactory.getEmailValidateCode();
         PlainResult<Boolean> result = userServiceApi.changePassword(userId, newPwd);
-        result.setData(messageSendUtils==null);
+        result.setData(messageSendUtils == null);
         SimpleMailMessage message = messageSendUtils.sendValidateCode(email, validateCode);
 
 
@@ -86,43 +86,40 @@ public class UserController {
     }
 
     @RequestMapping("/createOrder")
-    public PlainResult<Order> submitOrder(Order order){
+    public PlainResult<Order> submitOrder(Order order) {
         return userServiceApi.createOrder(order);
-    }
-
-    @RequestMapping("/queryOrder")
-    public PageResult<Order> queryOrder(@RequestParam("userId") Long userId){
-        PageResult<Order> result = new PageResult<>();
-
-        //todo 查询个人订单 [ 包含历史纪录 未完成订单 ]
-        return result;
     }
 
 
     @RequestMapping("/submitOrder")
-    public PlainResult<Boolean> submitOrder(){
-        PlainResult<Boolean> result = new PlainResult<>();
-        //todo 提交订单
-        return result;
+    public PlainResult<Boolean> submitOrder(@RequestParam("orderId") Long orderId) {
+        return  userServiceApi.submitOrder(orderId);
+    }
+
+    @RequestMapping("/queryOrder")
+    public PageResult<Order> queryOrder(@RequestParam("userId") Long userId,
+                                        Integer page, Integer pageSize) {
+
+        return userServiceApi.getOrderList(userId, page, pageSize);
     }
 
 
     @RequestMapping("/deleteOrder")
-    public PlainResult<Boolean> deleteOrder(@RequestParam("orderId") Long orderId){
+    public PlainResult<Boolean> deleteOrder(@RequestParam("orderId") Long orderId) {
         return userServiceApi.removeOrder(orderId);
     }
 
     @RequestMapping("/getValidateCode")
     public void getValidateCode(HttpServletResponse response,
-                                HttpSession session){
+                                HttpSession session) {
 
-        try{
-            CreateValidateCode vsCode=new CreateValidateCode(100, 30, 5, 10);
-            session.setAttribute("vsCode",vsCode.getCode());
-            log.info("vsCode={}",vsCode.getCode());
+        try {
+            CreateValidateCode vsCode = new CreateValidateCode(100, 30, 5, 10);
+            session.setAttribute("vsCode", vsCode.getCode());
+            log.info("vsCode={}", vsCode.getCode());
             vsCode.write(response.getOutputStream());
-        }catch (Exception e){
-            log.error("getValidateCode Exception :{}",e.getMessage());
+        } catch (Exception e) {
+            log.error("getValidateCode Exception :{}", e.getMessage());
         }
     }
 }

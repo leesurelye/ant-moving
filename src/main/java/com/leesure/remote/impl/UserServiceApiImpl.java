@@ -4,6 +4,7 @@ import com.leesure.common.exception.SystemErrorCode;
 import com.leesure.common.exception.SystemException;
 import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
+import com.leesure.common.sysenum.OrderEnum;
 import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.User;
 import com.leesure.remote.intl.UserServiceApi;
@@ -14,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by yue on 2019/2/12.
@@ -85,13 +88,22 @@ public class UserServiceApiImpl implements UserServiceApi {
     }
 
     @Override
-    public PlainResult<Long> submitOrder(Order order) {
-        return null;
-    }
+    public PageResult<Order> getOrderList(Long userId,Integer page,Integer pageSize) {
+        PageResult<Order> result = new PageResult<>();
 
-    @Override
-    public PageResult<Order> getOrderList(Long userId) {
-        return null;
+        try{
+            List<Order> data = orderService.queryOrderPagination(page, pageSize,userId);
+            result.setData(data);
+            int total = orderService.countOrder(userId);
+            result.setTotalCount(total);
+        }catch (SystemException exception){
+            result.setError(exception);
+            log.error(exception.getMessage(),exception);
+        }catch (Exception e){
+            result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,e.getMessage());
+            log.error(e.getMessage(),e);
+        }
+        return result;
     }
 
 
@@ -107,6 +119,22 @@ public class UserServiceApiImpl implements UserServiceApi {
         }catch (Exception e){
             result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,
                     e.getMessage());
+            log.error(e.getMessage(),e);
+        }
+        return result;
+    }
+
+    @Override
+    public PlainResult<Boolean> submitOrder(Long orderId) {
+        PlainResult<Boolean> result = new PlainResult<>();
+        try{
+            boolean data = orderService.updateOrderState(orderId, OrderEnum.COMMIT);
+            result.setData(data);
+        }catch (SystemException exception){
+            result.setError(exception.getCode(),exception.getMessage());
+            log.error(exception.getMessage(),exception);
+        }catch (Exception e){
+            result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,e.getMessage());
             log.error(e.getMessage(),e);
         }
         return result;
