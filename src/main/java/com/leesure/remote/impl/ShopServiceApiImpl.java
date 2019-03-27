@@ -4,10 +4,11 @@ import com.leesure.common.exception.SystemErrorCode;
 import com.leesure.common.exception.SystemException;
 import com.leesure.common.result.ListResult;
 import com.leesure.common.result.PlainResult;
+import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.ShopDetail;
 import com.leesure.dao.entity.ShopInfo;
-import com.leesure.dao.entity.ShopService;
 import com.leesure.remote.intl.ShopServiceApi;
+import com.leesure.service.intl.OrderService;
 import com.leesure.service.intl.ShopDetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.List;
 
 /**
  * Created by yue on 2019/3/22.
+ * 商店服务
  * @author yue
  */
 @Service("ShopServiceApi")
@@ -25,6 +27,10 @@ public class ShopServiceApiImpl implements ShopServiceApi {
 
     @Autowired
     private ShopDetailService detailService;
+
+
+    @Autowired
+    private OrderService orderService;
 
 
     @Override
@@ -84,17 +90,17 @@ public class ShopServiceApiImpl implements ShopServiceApi {
     @Override
     public PlainResult<ShopDetail> getShopDetailById(Long shopId) {
         PlainResult<ShopDetail> result = new PlainResult<>();
+        if (shopId==null){
+            return result.setError(SystemErrorCode.MISS_PARAM,"shopId");
+        }
         try{
             ShopDetail data = detailService.getShopDetailById(shopId);
             result.setData(data);
         }catch (SystemException exception){
-            result.setSuccess(false);
-            result.setCode(exception.getCode());
-            result.setMsg(exception.getMessage());
+            result.setError(exception.getCode(),exception.getMessage());
         }catch (Exception e){
-            result.setCode(SystemErrorCode.SYSTEM_UNKNOWN_ERROR.getCode());
-            result.setMsg(e.getMessage());
-            result.setSuccess(false);
+            result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR.getCode(),
+                    e.getMessage());
         }
         return result;
     }

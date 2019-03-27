@@ -16,6 +16,15 @@ public interface UserService {
       */
      int addUser(User user) throws Exception;
 
+
+     /**
+      * 修改账户密码
+      * @param userId 账户id
+      * @param newPwd 新密码
+      * @return 修改的行数
+      */
+     boolean changePassword(Long userId, String newPwd);
+
      /**
       * 根据用户电话查询用户信息
       * @param phone telephone

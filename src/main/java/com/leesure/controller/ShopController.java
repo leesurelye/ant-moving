@@ -44,9 +44,13 @@ public class ShopController {
 
 
     @RequestMapping("/getShopDetail")
-    public PlainResult<ShopDetail> getShopDetail(@RequestParam("shopId") Long shopId){
+    public PlainResult<ShopDetail> getShopDetail(Long shopId){
         return shopServiceApi.getShopDetailById(shopId);
     }
+
+
+
+    //todo
     @RequestMapping("/getOrder")
     public PageResult<Order> getShopOrder(Long shopId){
         //todo 获取商店订单

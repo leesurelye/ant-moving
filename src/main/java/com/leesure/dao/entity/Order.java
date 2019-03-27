@@ -15,8 +15,9 @@ public class Order {
     private Long id;
     //用户id
     private Long userId;
+
     //关联的商店serviceId
-    private String serviceId;
+    private Long serviceId;
 
     //用户地址
     private String address;

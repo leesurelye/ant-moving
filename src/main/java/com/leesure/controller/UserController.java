@@ -4,17 +4,20 @@ import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.User;
+import com.leesure.remote.intl.ShopServiceApi;
 import com.leesure.remote.intl.UserServiceApi;
 import com.leesure.utils.CreateValidateCode;
+import com.leesure.utils.MessageSendUtils;
+import com.leesure.utils.ValidateCodeFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.HttpCookie;
 
 /**
  * Created by yue on 2019/2/11.
@@ -27,6 +30,12 @@ public class UserController {
 
     @Autowired
     private UserServiceApi userServiceApi;
+
+
+    @Autowired
+    private MessageSendUtils messageSendUtils;
+
+
 
     @RequestMapping("/login")
     public  PlainResult<User>  login(@RequestParam("account") String account,
@@ -63,18 +72,28 @@ public class UserController {
 
 
     @RequestMapping("/changePassword")
-    public PlainResult<Boolean> changePassword(){
-        PlainResult<Boolean> result = new PlainResult<>();
-        //todo 修改密码请求
+    public PlainResult<Boolean> changePassword(@RequestParam("userId")Long userId,
+                                               String email,
+                                               @RequestParam("newPwd") String newPwd){
+        String validateCode = ValidateCodeFactory.getEmailValidateCode();
+        PlainResult<Boolean> result = userServiceApi.changePassword(userId, newPwd);
+        result.setData(messageSendUtils==null);
+        SimpleMailMessage message = messageSendUtils.sendValidateCode(email, validateCode);
+
+
+        //result.setData(messageSendUtils==null);
         return result;
     }
 
-
-
+    @RequestMapping("/createOrder")
+    public PlainResult<Order> submitOrder(Order order){
+        return userServiceApi.createOrder(order);
+    }
 
     @RequestMapping("/queryOrder")
-    public PageResult<Order> queryOrder(){
+    public PageResult<Order> queryOrder(@RequestParam("userId") Long userId){
         PageResult<Order> result = new PageResult<>();
+
         //todo 查询个人订单 [ 包含历史纪录 未完成订单 ]
         return result;
     }
@@ -89,10 +108,8 @@ public class UserController {
 
 
     @RequestMapping("/deleteOrder")
-    public PlainResult<Boolean> deleteOrder(){
-        PlainResult<Boolean> result = new PlainResult<>();
-        //todo 删除订单
-        return result;
+    public PlainResult<Boolean> deleteOrder(@RequestParam("orderId") Long orderId){
+        return userServiceApi.removeOrder(orderId);
     }
 
     @RequestMapping("/getValidateCode")

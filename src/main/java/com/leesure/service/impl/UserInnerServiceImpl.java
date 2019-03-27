@@ -6,7 +6,9 @@ import com.leesure.dao.UserDao;
 import com.leesure.dao.entity.User;
 import com.leesure.service.intl.UserService;
 import com.leesure.utils.MD5Utils;
+import com.leesure.utils.MessageSendUtils;
 import com.leesure.utils.PrimaryKeyUtils;
+import com.sun.org.apache.regexp.internal.RE;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,25 @@ public class UserInnerServiceImpl implements UserService {
     private UserDao userDao;
 
 
+    @Autowired
+    private MessageSendUtils messageSendUtils;
+
+
     @Override
     public int  addUser(User user) throws SystemException {
 
         user.setId(PrimaryKeyUtils.createUserPrimaryId());
         return userDao.insert(user);
+    }
+
+    @Override
+    public boolean changePassword(Long userId, String newPwd) {
+        User user = new User();
+        user.setId(userId);
+        user.setPassword(newPwd);
+
+//        return userDao.update(user)==1;
+        return true;
     }
 
     @Override

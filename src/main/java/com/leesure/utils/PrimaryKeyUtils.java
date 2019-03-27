@@ -35,4 +35,14 @@ public class PrimaryKeyUtils {
     }
 
 
+
+    public static  Long createOrderId(Long userId,Long serviceId){
+        String format = PrimaryKeyUtils.format.format(new Date());
+
+        Random random = new Random();
+        int ran =random.nextInt(100);
+        return userId+serviceId+ran+Long.parseLong(format);
+    }
+
+
 }

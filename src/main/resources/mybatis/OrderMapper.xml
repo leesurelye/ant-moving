@@ -26,8 +26,8 @@
     </sql>
 
     <!--auto generated Code-->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO order (
+    <insert id="insert">
+        INSERT INTO t_order (
             `id`,
             `user_id`,
             `service_id`,
@@ -49,8 +49,8 @@
     </insert>
 
     <!--auto generated Code-->
-    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO order
+    <insert id="insertSelective">
+        INSERT INTO t_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id!=null"> `id`,</if>
             <if test="pojo.userId!=null"> `user_id`,</if>
@@ -76,7 +76,7 @@
 
     <!--auto generated Code-->
     <insert id="insertList">
-        INSERT INTO order (
+        INSERT INTO t_order (
         <include refid="all_column"/>
         )VALUES
         <foreach collection="pojos" item="pojo" index="index" separator=",">
@@ -95,7 +95,7 @@
 
     <!--auto generated Code-->
     <update id="update">
-        UPDATE order
+        UPDATE t_order
         <set>
             <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
             <if test="pojo.userId != null"> `user_id` = #{pojo.userId}, </if>
@@ -108,5 +108,11 @@
         </set>
         WHERE id = #{pojo.id}
     </update>
+
+
+    <select id="selectOrderById" resultMap="AllColumnMap">
+        SELECT * FROM t_order WHERE id=#{id}
+    </select>
+
 </mapper>
 

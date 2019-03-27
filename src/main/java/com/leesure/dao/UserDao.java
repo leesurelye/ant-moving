@@ -33,7 +33,6 @@ public class UserDao{
         return userMapper.update(pojo);
     }
 
-
     public User queryUserByConditions(String condition){
         List<User> userList = userMapper.selectUserByConditions(condition);
         if (CollectionUtils.isEmpty(userList)){

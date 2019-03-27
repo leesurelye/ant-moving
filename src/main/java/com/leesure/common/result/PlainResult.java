@@ -1,5 +1,6 @@
 package com.leesure.common.result;
 
+import com.leesure.common.exception.SystemErrorCode;
 import lombok.Data;
 
 /**
@@ -27,13 +28,25 @@ public class PlainResult<T> {
 
     /**
      * set Error msg
-     * @param code errorCode
+     * @param error errorCode
      * @param object errorMessage
-     * @return result
      */
-    public PlainResult<T> setError(String code,Object object){
-        this.msg=String.format(code,object);
-        this.code = code;
+    public PlainResult<T> setError(SystemErrorCode error, Object object){
+        this.msg=String.format(error.getMsg(),object);
+        this.code = error.getCode();
+        this.success=false;
+        return this;
+    }
+
+    /**
+     * 不建议使用
+     * @param error 错误码
+     * @param object 异常消息体
+     * @return 返回结果
+     */
+    public PlainResult<T> setError(String error,Object object){
+        this.msg=String.format(error,object);
+        this.code = error;
         this.success=false;
         return this;
     }

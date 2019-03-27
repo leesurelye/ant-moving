@@ -3,11 +3,9 @@ package com.leesure.remote.intl;
 import com.leesure.common.exception.SystemException;
 import com.leesure.common.result.ListResult;
 import com.leesure.common.result.PlainResult;
+import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.ShopDetail;
 import com.leesure.dao.entity.ShopInfo;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by yue on 2019/3/22.
@@ -41,7 +39,7 @@ public interface ShopServiceApi {
 
 
     /**
-     * 通过商店Id获取商店详细信息
+     * 通过商店Id获取商店详细信息,包括商店没有删除的服务列表
      * @param shopId shopId
      * @return 商店详细信息
      */

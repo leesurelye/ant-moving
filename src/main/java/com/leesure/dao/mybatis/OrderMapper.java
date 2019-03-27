@@ -15,4 +15,7 @@ public interface OrderMapper {
     int insertList(@Param("pojos") List<Order> pojo);
 
     int update(@Param("pojo") Order pojo);
+
+
+    Order selectOrderById(@Param("id") Long id);
 }
