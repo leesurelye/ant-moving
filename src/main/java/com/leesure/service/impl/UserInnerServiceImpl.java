@@ -5,12 +5,8 @@ import com.leesure.common.exception.SystemException;
 import com.leesure.dao.UserDao;
 import com.leesure.dao.entity.User;
 import com.leesure.service.intl.UserService;
-import com.leesure.utils.MD5Utils;
-import com.leesure.utils.MessageSendUtils;
 import com.leesure.utils.PrimaryKeyUtils;
-import com.sun.org.apache.regexp.internal.RE;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +20,6 @@ public class UserInnerServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-
-
-    @Autowired
-    private MessageSendUtils messageSendUtils;
 
 
     @Override
@@ -50,6 +42,15 @@ public class UserInnerServiceImpl implements UserService {
     @Override
     public User queryUserByPhone(String phone) {
         return null;
+    }
+
+    @Override
+    public boolean updateUserBasicInfo(User user)
+            throws SystemException{
+        if (user.getId()==null){
+            throw new SystemException(SystemErrorCode.MISS_PARAM,"userId");
+        }
+        return userDao.update(user)>0;
     }
 
     @Override

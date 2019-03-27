@@ -1,5 +1,6 @@
 package com.leesure.service.intl;
 
+import com.leesure.common.exception.SystemException;
 import com.leesure.dao.entity.User;
 
 /**
@@ -32,6 +33,13 @@ public interface UserService {
       */
      User queryUserByPhone(String phone);
 
+
+     /**
+      * 更新用户基本信息 -不包含个人密码
+      * @param user
+      * @return
+      */
+     boolean updateUserBasicInfo(User user) throws SystemException;
 
      /**
       * user login inner  service

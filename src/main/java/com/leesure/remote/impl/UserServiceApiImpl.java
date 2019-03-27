@@ -83,9 +83,21 @@ public class UserServiceApiImpl implements UserServiceApi {
     }
 
     @Override
-    public PlainResult<Boolean> updateInfo(User user) {
+    public PlainResult<Boolean> updateUserInfo(User user) {
+        PlainResult<Boolean> result = new PlainResult<>();
+        try{
+            boolean data = userService.updateUserBasicInfo(user);
+            result.setData(data);
+        }catch (SystemException exception){
+            result.setError(exception.getCode(),exception.getMessage());
+            log.error(exception.getMessage(),exception);
+        }catch (Exception e){
+            result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,e.getMessage());
+            log.error(e.getMessage(),e);
+        }
         return null;
     }
+
 
     @Override
     public PageResult<Order> getOrderList(Long userId,Integer page,Integer pageSize) {

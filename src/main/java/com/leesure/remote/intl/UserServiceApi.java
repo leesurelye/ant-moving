@@ -36,12 +36,11 @@ public interface UserServiceApi {
 
 
     /**
-     * 更改个人基本信息，不包含更新密码
-     * @param user 新的用户基本信息
-     * @return 是否成功
+     * 修改个人信息 - 不包含修改个人密码
+     * @param user 用户基本信息
+     * @return 是否修改成功
      */
-    PlainResult<Boolean> updateInfo(User user);
-
+    PlainResult<Boolean> updateUserInfo(User user) ;
 
     /**
      * 获取个人历史订单纪录

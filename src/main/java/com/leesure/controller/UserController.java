@@ -4,7 +4,6 @@ import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.User;
-import com.leesure.remote.intl.ShopServiceApi;
 import com.leesure.remote.intl.UserServiceApi;
 import com.leesure.utils.CreateValidateCode;
 import com.leesure.utils.MessageSendUtils;
@@ -31,7 +30,6 @@ public class UserController {
 
     @Autowired
     private UserServiceApi userServiceApi;
-
 
     @Autowired
     private MessageSendUtils messageSendUtils;
@@ -64,10 +62,8 @@ public class UserController {
     }
 
     @RequestMapping("/updateUserInfo")
-    public PlainResult<Boolean> updateUseInfo() {
-        PlainResult<Boolean> result = new PlainResult<>();
-        //todo 修改个人信息,不包含修改个人密码
-        return result;
+    public PlainResult<Boolean> updateUseInfo(User user) {
+        return  userServiceApi.updateUserInfo(user);
     }
 
 
