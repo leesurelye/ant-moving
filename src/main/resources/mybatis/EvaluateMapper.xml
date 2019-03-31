@@ -9,6 +9,7 @@
         <result column="create_time" property="createTime"/>
         <result column="rate" property="rate"/>
         <result column="is_delete" property="isDelete"/>
+        <result column="user_name" property="userName"/>
     </resultMap>
 
     <!--auto generated Code-->
@@ -18,7 +19,8 @@
         `info`,
         `create_time`,
         `rate`,
-        `is_delete`
+        `is_delete`,
+        `user_name`
     </sql>
 
     <!--auto generated Code-->
@@ -50,6 +52,7 @@
             <if test="pojo.createTime!=null"> `create_time`,</if>
             <if test="pojo.rate!=null"> `rate`,</if>
             <if test="pojo.isDelete!=null"> `is_delete`,</if>
+            <if test="pojo.userName!=null"> `user_name`,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -59,6 +62,7 @@
             <if test="pojo.createTime!=null">#{pojo.createTime},</if>
             <if test="pojo.rate!=null">#{pojo.rate},</if>
             <if test="pojo.isDelete!=null">#{pojo.isDelete},</if>
+            <if test="pojo.userName!=null">#{pojo.userName}</if>
         </trim>
     </insert>
 

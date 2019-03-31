@@ -91,12 +91,11 @@ public class ShopServiceApiImpl implements ShopServiceApi {
     @Override
     public PlainResult<ShopDetail> getShopDetailById(Long shopId) {
         PlainResult<ShopDetail> result = new PlainResult<>();
-
         try{
             ShopDetail data = detailService.getShopDetailById(shopId);
             result.setData(data);
         }catch (SystemException exception){
-            result.setError(exception.getCode(),exception.getMessage());
+            result.setError(exception);
         }catch (Exception e){
             result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR.getCode(),
                     e.getMessage());
@@ -113,7 +112,7 @@ public class ShopServiceApiImpl implements ShopServiceApi {
             int total = detailService.countEvaluateByShopID(shopId);
             result.setTotalCount(total);
         }catch (SystemException exception){
-            result.setError(exception.getCode(),exception.getMessage());
+            result.setError(exception);
             log.error(exception.getMessage(),exception);
         }catch (Exception e){
             result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,e.getMessage());

@@ -37,14 +37,14 @@ public class ShopController {
 
 
     @RequestMapping("/queryByConditions")
-    public ListResult<ShopInfo> queryByConditions(@RequestParam("address") String address,
+    public ListResult<ShopInfo> queryByConditions(String address,
                                                   String name){
         return shopServiceApi.getShopInfoByCondition(address,name);
     }
 
 
     @RequestMapping("/getShopDetail")
-    public PlainResult<ShopDetail> getShopDetail(Long shopId){
+    public PlainResult<ShopDetail> getShopDetail(@RequestParam("shopId") Long shopId){
         return shopServiceApi.getShopDetailById(shopId);
     }
 

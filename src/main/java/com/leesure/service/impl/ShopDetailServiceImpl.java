@@ -14,6 +14,7 @@ import com.leesure.utils.PrimaryKeyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -72,11 +73,15 @@ public class ShopDetailServiceImpl implements ShopDetailService {
 
     @Override
     public List<ShopInfo> getShopInfoByAddress(String address, String name) {
+
         return shopDao.selectShopInfoByAddress(address, name);
     }
 
     @Override
     public ShopDetail getShopDetailById(Long id) throws SystemException {
+        if(id==null){
+            throw new SystemException(SystemErrorCode.MISS_PARAM,"shopId");
+        }
         ShopDetail shopDetail = shopDao.selectShopDetailById(id);
         if (shopDetail == null) {
             throw new SystemException(SystemErrorCode.ERROR_DATA_IS_NULL);
@@ -87,7 +92,11 @@ public class ShopDetailServiceImpl implements ShopDetailService {
     }
 
     @Override
-    public List<Evaluate> getEvaluateByShopID(Long shopID, int page, int pageSize) {
+    public List<Evaluate> getEvaluateByShopID(Long shopID, Integer page, Integer pageSize)
+            throws SystemException{
+        if (page ==null|| pageSize==null){
+            throw new SystemException(SystemErrorCode.MISS_PARAM,"page,pageSize");
+        }
         Map<String, Long> map = new HashMap<>();
         map.put("shop_id", shopID);
         return evaluateDao.queryEvaluatePagination(map, page,pageSize);

@@ -4,6 +4,7 @@ import com.leesure.dao.entity.ShopDetail;
 import com.leesure.dao.entity.ShopInfo;
 import com.leesure.dao.mybatis.ShopDetailMapper;
 import com.leesure.dao.mybatis.ShopServiceMapper;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -47,12 +48,14 @@ public class ShopDao {
     }
 
     public List<ShopInfo> selectShopInfoByAddress(String address,String name){
-        address = "%"+address;
-        name = name==null?"%":"%"+name;
+        address = StringUtils.isEmpty(address)?"% ":"%"+address;
+        name = StringUtils.isEmpty(name)?"%":"%"+name;
         return detailMapper.selectShopInfoByAddress(address,name);
     }
 
     public ShopDetail selectShopDetailById(Long shopId){
         return detailMapper.selectOne(shopId);
     }
+
+
 }

@@ -32,6 +32,8 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setId(PrimaryKeyUtils.createOrderId(order.getUserId(),
                 order.getServiceId()));
+        order.setIsDeleted(false);
+        order.setOrderState(OrderEnum.UNCOMMIT.getStatus());
         return orderDao.createOrder(order);
     }
 

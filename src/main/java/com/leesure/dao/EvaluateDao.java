@@ -2,6 +2,7 @@ package com.leesure.dao;
 
 import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.mybatis.EvaluateMapper;
+import com.leesure.dao.mybatis.UserMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -19,6 +20,9 @@ public class EvaluateDao {
 
     @Resource
     private EvaluateMapper mapper;
+
+    @Resource
+    private UserMapper userMapper;
 
 
     public int addEvaluate(Evaluate evaluate) {

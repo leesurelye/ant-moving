@@ -24,5 +24,7 @@ public class Evaluate {
 
     private Boolean isDelete;
 
+    private String userName;
+
 }
 

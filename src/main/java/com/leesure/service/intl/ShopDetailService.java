@@ -33,7 +33,7 @@ public interface ShopDetailService {
      * @param shopID key=column name ,value =idValue
      * @return 评价列表
      */
-    List<Evaluate> getEvaluateByShopID(Long shopID,int page,int pageSize)
+    List<Evaluate> getEvaluateByShopID(Long shopID, Integer page, Integer pageSize)
             throws SystemException;
 
     /**
