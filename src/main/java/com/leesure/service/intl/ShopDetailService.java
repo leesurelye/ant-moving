@@ -5,6 +5,7 @@ import com.leesure.common.exception.SystemException;
 import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.ShopDetail;
 import com.leesure.dao.entity.ShopInfo;
+import com.leesure.dao.entity.ShopService;
 
 import java.util.List;
 import java.util.Map;
@@ -43,4 +44,20 @@ public interface ShopDetailService {
      */
     int countEvaluateByShopID(Long shopID);
 
+
+    /**
+     * 根据商店ID获取商店服务列表
+     * @param shopId 商店ID
+     * @param page 当前页面
+     * @param pageSize 页面大小
+     * @return 服务列表
+     */
+    List<ShopService> getShopServiceList(Long shopId,Integer page,Integer pageSize);
+
+    /**
+     * 获得商店服务数量总数
+     * @param shopID 商店ID
+     * @return 总数
+     */
+    int countServiceList(Long shopID);
 }

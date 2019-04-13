@@ -17,5 +17,9 @@ public interface ShopServiceMapper {
 
     int update(@Param("pojo") ShopService pojo);
 
-    List<ShopService> selectShopServiceByShopId(@Param("shopId") Long shopId);
+    List<ShopService> selectShopServiceByShopId(@Param("shopId") Long shopId,
+                                                @Param("pageBegin") Integer begin,
+                                                @Param("size") Integer pageSize);
+
+    int countService(@Param("shopId") Long shopId);
 }

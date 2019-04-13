@@ -6,6 +6,7 @@ import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.ShopDetail;
 import com.leesure.dao.entity.ShopInfo;
+import com.leesure.dao.entity.ShopService;
 
 /**
  * Created by yue on 2019/3/22.
@@ -52,4 +53,13 @@ public interface ShopServiceApi {
      * @return 评价列表
      */
     PageResult<Evaluate> getShopEvaluate(Long shopId,Integer page,Integer pageSize);
+
+    /**
+     * 获取商店服务列表
+     * @param shopId shopId
+     * @param page 当前页
+     * @param pageSize 页面大小
+     * @return 商品详细信息
+     */
+    PageResult<ShopService> getShopService(Long shopId,Integer page,Integer pageSize);
 }

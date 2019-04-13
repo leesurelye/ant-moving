@@ -1,7 +1,9 @@
 package com.leesure.remote.intl;
 
+import com.leesure.common.result.PageResult;
 import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Admin;
+import com.leesure.dao.entity.Order;
 import com.leesure.dao.entity.ShopDetail;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
@@ -43,5 +45,15 @@ public interface AdminServiceApi {
      * @return 是否关闭成功
      */
     PlainResult<Boolean> closeOrder(Long id);
+
+
+    /**
+     * 获取订单列列表
+     * @param shopId
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    PageResult<Order> getOrderList(Long shopId,Integer page,Integer pageSize);
 
 }

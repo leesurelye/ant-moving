@@ -40,4 +40,8 @@ public class UserDao{
         }
         return  userList.get(0);
     }
+
+    public User selectById(Long userId){
+        return userMapper.selectUserById(userId);
+    }
 }

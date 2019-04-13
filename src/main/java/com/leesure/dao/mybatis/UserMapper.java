@@ -17,4 +17,6 @@ public interface UserMapper {
     int update(@Param("pojo") User pojo);
 
     List<User> selectUserByConditions(@Param("value") String value);
+
+    User selectUserById(@Param("id")Long id);
 }

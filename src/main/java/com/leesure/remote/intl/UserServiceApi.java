@@ -68,4 +68,11 @@ public interface UserServiceApi {
      */
     PlainResult<Boolean> removeOrder(Long orderId);
 
+    /**
+     * 根据获取用户信息
+     * @param userID userId
+     * @return user object
+     */
+    PlainResult<User> getUserInfo(Long userID);
+
 }

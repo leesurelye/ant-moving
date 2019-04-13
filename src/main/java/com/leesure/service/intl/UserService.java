@@ -35,6 +35,12 @@ public interface UserService {
 
 
      /**
+      * 更具用户的ID查找用户信息
+      * @param userID userID
+      * @return user object
+      */
+     User queryUserById(Long userID);
+     /**
       * 更新用户基本信息 -不包含个人密码
       * @param user
       * @return

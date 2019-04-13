@@ -36,9 +36,9 @@ public class UserController {
 
 
     @RequestMapping("/login")
-    public PlainResult<User> login(@RequestParam("account") String account,
+    public PlainResult<User> login(@RequestParam("name") String name,
                                    @RequestParam("password") String password) {
-        PlainResult<User> result = userServiceApi.login(account, password);
+        PlainResult<User> result = userServiceApi.login(name, password);
         if (result.getSuccess()) {
             //todo 在cookie 中设置用户信息
         }
@@ -61,10 +61,19 @@ public class UserController {
         return result;
     }
 
+
+    @RequestMapping("/getUserInfo")
+    public PlainResult<User> getUserInfo(@RequestParam("userId") Long userID){
+        return userServiceApi.getUserInfo(userID);
+    }
+
     @RequestMapping("/updateUserInfo")
     public PlainResult<Boolean> updateUseInfo(User user) {
         return  userServiceApi.updateUserInfo(user);
     }
+
+
+
 
 
     @RequestMapping("/changePassword")
@@ -104,6 +113,13 @@ public class UserController {
     public PlainResult<Boolean> deleteOrder(@RequestParam("orderId") Long orderId) {
         return userServiceApi.removeOrder(orderId);
     }
+
+    @RequestMapping("/removeEvaluate")
+    public PlainResult<Boolean> removeEvaluate(@RequestParam("orderId") Long orderId){
+        //todo 删除订单Id
+        return null;
+    }
+
 
     @RequestMapping("/getValidateCode")
     public void getValidateCode(HttpServletResponse response,

@@ -84,5 +84,10 @@
         WHERE name = #{value}
         OR  phone =#{value}
     </select>
+
+    <select id="selectUserById" resultMap="AllColumnMap">
+        SELECT * FROM t_user
+        WHERE id=#{id}
+    </select>
 </mapper>
 

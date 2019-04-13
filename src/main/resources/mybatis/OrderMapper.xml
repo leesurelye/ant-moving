@@ -11,6 +11,7 @@
         <result column="create_time" property="createTime"/>
         <result column="total_pay" property="totalPay"/>
         <result column="is_deleted" property="isDeleted"/>
+        <result column="order_state" property="orderState"/>
     </resultMap>
 
     <!--auto generated Code-->
@@ -115,6 +116,19 @@
         SELECT * FROM t_order WHERE id=#{id}
     </select>
 
+    <select id="selectOrderByShopId" resultMap="AllColumnMap">
+        SELECT * FROM t_order WHERE service_id in (
+          SELECT id  FROM shop_service WHERE shop_id=#{shopID}
+        ) limit #{pageBegin},#{pageSize}
+    </select>
+
+
+    <select id="countByShopID" resultType="java.lang.Integer">
+        SELECT count(*) FROM t_order   WHERE service_id in (
+          SELECT id  FROM shop_service WHERE shop_id=#{shopID}
+        )
+    </select>
+
     <select id="selectOrder" resultMap="AllColumnMap" >
         SELECT * FROM t_order WHERE
         <foreach collection="map" index="key" item="value">
@@ -127,7 +141,7 @@
     <select id="countByCondition" resultType="java.lang.Integer">
         SELECT count(id) FROM t_order WHERE
         <foreach collection="map" index="key" item="value"
-                 open="" close=" and ">
+                 open="" close=" ">
             ${key} = #{value}
         </foreach>
     </select>

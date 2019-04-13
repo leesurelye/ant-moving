@@ -49,14 +49,6 @@ public class ShopController {
     }
 
 
-
-    @RequestMapping("/getOrder")
-    public PageResult<Order> getShopOrder(Long shopId){
-        //todo 获取商店订单
-        return null;
-    }
-
-
     @RequestMapping("/getEvaluateList")
     public PageResult<Evaluate> getEvaluateList(@RequestParam("shopId") Long shopId,
                                                 Integer page,Integer pageSize){
@@ -65,10 +57,10 @@ public class ShopController {
     }
 
     @RequestMapping("/getServiceList")
-    public PageResult<ShopService> getServiceList(@RequestParam("shopId") Long shopId){
+    public PageResult<ShopService> getServiceList(@RequestParam("shopId") Long shopId,
+                                                  Integer page,Integer pageSize){
 
-        //todo 获取商店所属服务列表
-        return null;
+        return shopServiceApi.getShopService(shopId,page,pageSize);
 
     }
 

@@ -61,4 +61,14 @@ public class OrderDao {
     public int updateOrder(Order order){
         return mapper.update(order);
     }
+
+
+    public List<Order> selectOrderByShopID(Long shopId,Integer page,Integer pageSize){
+        return mapper.selectOrderByShopId(shopId,(page-1)* pageSize,pageSize);
+    }
+
+
+    public int countOrderByShopID(Long shopId){
+        return mapper.countByShopID(shopId);
+    }
 }

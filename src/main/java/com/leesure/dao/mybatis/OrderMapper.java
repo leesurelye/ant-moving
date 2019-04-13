@@ -18,6 +18,11 @@ public interface OrderMapper {
 
     int update(@Param("pojo") Order pojo);
 
+
+    List<Order> selectOrderByShopId(@Param("shopID") Long shopID,
+                                    @Param("pageBegin") Integer pageBegin,
+                                    @Param("pageSize") Integer pageSize);
+
     Order selectOrderById(@Param("id") Long id);
 
     List<Order> selectOrder(@Param("begin") int begin,
@@ -26,4 +31,7 @@ public interface OrderMapper {
 
 
     int countByCondition(@Param("map")Map<String,Long> map);
+
+
+    int countByShopID(@Param("shopID") Long shopID);
 }

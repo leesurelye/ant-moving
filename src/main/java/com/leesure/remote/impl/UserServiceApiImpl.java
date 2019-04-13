@@ -164,4 +164,17 @@ public class UserServiceApiImpl implements UserServiceApi {
         }
         return result;
     }
+
+    @Override
+    public PlainResult<User> getUserInfo(Long userID) {
+        PlainResult<User>  result=new PlainResult<>();
+        try{
+            User data = userService.queryUserById(userID);
+            result.setData(data);
+        }catch (Exception e){
+            result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,e.getMessage());
+            log.error(e.getMessage(),e);
+        }
+        return result;
+    }
 }

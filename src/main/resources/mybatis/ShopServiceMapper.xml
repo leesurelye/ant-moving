@@ -104,6 +104,12 @@
     <!--created by lee-->
     <select id="selectShopServiceByShopId" resultMap="AllColumnMap">
         SELECT * FROM shop_service WHERE  shop_id = #{shopId}
+        <if test="pageBegin!=null">limit #{pageBegin},#{size}</if>
+    </select>
+
+
+    <select id="countService" resultType="java.lang.Integer">
+        SELECT count(id) FROM shop_service where shop_id=#{shopId}
     </select>
 </mapper>
 

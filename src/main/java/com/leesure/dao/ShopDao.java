@@ -48,8 +48,8 @@ public class ShopDao {
     }
 
     public List<ShopInfo> selectShopInfoByAddress(String address,String name){
-        address = StringUtils.isEmpty(address)?"% ":"%"+address;
-        name = StringUtils.isEmpty(name)?"%":"%"+name;
+        address = StringUtils.isEmpty(address)?"% ":"%"+address+"%";
+        name = StringUtils.isEmpty(name)?"%":"%"+name+"%";
         return detailMapper.selectShopInfoByAddress(address,name);
     }
 

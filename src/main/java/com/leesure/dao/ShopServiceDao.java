@@ -18,6 +18,16 @@ public class ShopServiceDao {
     private ShopServiceMapper mapper;
 
     public List<ShopService> selectShopServiceByShopId(Long shopId){
-        return  mapper.selectShopServiceByShopId(shopId);
+        return  mapper.selectShopServiceByShopId(shopId,null,null);
+    }
+
+    public List<ShopService> selectShopServicePageination(Long shopId,
+                                                          Integer page,
+                                                          Integer pageSize){
+        return mapper.selectShopServiceByShopId(shopId,page,pageSize);
+    }
+
+    public int countService(Long shopId){
+        return mapper.countService(shopId);
     }
 }

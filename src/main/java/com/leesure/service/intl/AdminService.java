@@ -2,6 +2,9 @@ package com.leesure.service.intl;
 
 import com.leesure.common.exception.SystemException;
 import com.leesure.dao.entity.Admin;
+import com.leesure.dao.entity.Order;
+
+import java.util.List;
 
 /**
  * Created by yue on 2019/3/15.
@@ -33,4 +36,15 @@ public interface AdminService {
     boolean closeOrder(Long orderId)
             throws SystemException;
 
+
+    /**
+     * 获取商店订单
+     * @param shopId
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<Order> queryOrderList(Long shopId,Integer page,Integer pageSize);
+
+    int countOrderList(Long shopId);
 }

@@ -11,6 +11,8 @@ import com.leesure.service.intl.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by yue on 2019/3/15.
  * @author yue
@@ -51,5 +53,15 @@ public class AdminServiceImpl implements AdminService {
         order.setId(orderId);
         order.setOrderState(OrderEnum.CLOSE.getStatus());
         return orderDao.updateOrder(order)>0;
+    }
+
+    @Override
+    public List<Order> queryOrderList(Long shopId, Integer page, Integer pageSize) {
+        return orderDao.selectOrderByShopID(shopId, page, pageSize);
+    }
+
+    @Override
+    public int countOrderList(Long shopId) {
+        return orderDao.countOrderByShopID(shopId);
     }
 }

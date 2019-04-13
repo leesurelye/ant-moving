@@ -45,6 +45,11 @@ public class UserInnerServiceImpl implements UserService {
     }
 
     @Override
+    public User queryUserById(Long userID) {
+        return userDao.selectById(userID);
+    }
+
+    @Override
     public boolean updateUserBasicInfo(User user)
             throws SystemException{
         if (user.getId()==null){

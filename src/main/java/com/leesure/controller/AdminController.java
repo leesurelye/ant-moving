@@ -5,6 +5,7 @@ import com.leesure.common.result.PlainResult;
 import com.leesure.dao.entity.Admin;
 import com.leesure.dao.entity.Evaluate;
 import com.leesure.dao.entity.Order;
+import com.leesure.dao.entity.ShopService;
 import com.leesure.remote.intl.AdminServiceApi;
 import com.leesure.remote.intl.ShopServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,36 +61,28 @@ public class AdminController {
         return null;
     }
 
+    @RequestMapping("/changeService")
+    public PlainResult<Boolean> changeService(ShopService shopService){
+        //todo 更新商店服务
+        return null;
+    }
+
     @RequestMapping("/offlineService")
-    public PlainResult<Boolean> offlineService(){
+    public PlainResult<Boolean> offlineService(@RequestParam("serviceId") Long serviceId){
 
-        //todo offline service
-        return null;
-    }
-
-    @RequestMapping("/getEvaluateList")
-    public PageResult<Evaluate> getEvaluateList(){
-
-        //todo 获取评价单 ** 管理员不可以编辑订单
-        return null;
-    }
-
-
-    @RequestMapping("/removeEvaluate")
-    public PlainResult<Boolean> removeEvaluate(@RequestParam("orderId") Long orderId){
-        //todo 删除订单Id
+        //todo offline service 下线服务
         return null;
     }
 
 
     @RequestMapping("/getOrderList")
-    public PageResult<Order> getOrderList(){
-        //todo 获取商店全部清单
-        return null;
+    public PageResult<Order> getOrderList(@RequestParam("shopID") Long shopID,
+                                          Integer page,Integer pageSize){
+        return adminServiceApi.getOrderList(shopID,page,pageSize);
     }
 
 
-    @RequestMapping("/closeOrder")
+    @RequestMapping("/updateOrderStatus")
     public PlainResult<Boolean> closeOrder(@RequestParam("orderId") Long orderId){
 
 
