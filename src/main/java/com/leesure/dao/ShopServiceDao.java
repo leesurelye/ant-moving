@@ -30,4 +30,8 @@ public class ShopServiceDao {
     public int countService(Long shopId){
         return mapper.countService(shopId);
     }
+
+    public long getShopId(Long adminId){
+       return  mapper.getShopId(adminId);
+    }
 }

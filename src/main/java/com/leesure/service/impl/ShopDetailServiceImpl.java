@@ -117,4 +117,9 @@ public class ShopDetailServiceImpl implements ShopDetailService {
     public int countServiceList(Long shopID) {
         return serviceDao.countService(shopID);
     }
+
+    @Override
+    public long getShopId(Long adminId) {
+        return serviceDao.getShopId(adminId);
+    }
 }

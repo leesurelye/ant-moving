@@ -22,4 +22,6 @@ public interface ShopServiceMapper {
                                                 @Param("size") Integer pageSize);
 
     int countService(@Param("shopId") Long shopId);
+
+    long getShopId(@Param("adminId") Long adminId);
 }

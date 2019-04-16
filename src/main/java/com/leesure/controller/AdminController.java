@@ -63,14 +63,14 @@ public class AdminController {
 
     @RequestMapping("/changeService")
     public PlainResult<Boolean> changeService(ShopService shopService){
-        //todo 更新商店服务
+        //todo 更新商店服务基本信息
         return null;
     }
 
-    @RequestMapping("/offlineService")
+    @RequestMapping("/updateService")
     public PlainResult<Boolean> offlineService(@RequestParam("serviceId") Long serviceId){
 
-        //todo offline service 下线服务
+        //todo offline service 更新服务状态
         return null;
     }
 
@@ -87,6 +87,11 @@ public class AdminController {
 
 
         return null;
+    }
+
+    @RequestMapping("/getShopId")
+    public PlainResult<Long> getShopId(@RequestParam("adminId")Long adminId){
+        return shopServiceApi.getShopId(adminId);
     }
 
 }

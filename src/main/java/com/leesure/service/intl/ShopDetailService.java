@@ -60,4 +60,8 @@ public interface ShopDetailService {
      * @return 总数
      */
     int countServiceList(Long shopID);
+
+
+
+    long getShopId(Long adminId);
 }

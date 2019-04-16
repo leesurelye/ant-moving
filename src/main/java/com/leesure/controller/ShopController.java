@@ -49,6 +49,8 @@ public class ShopController {
     }
 
 
+
+
     @RequestMapping("/getEvaluateList")
     public PageResult<Evaluate> getEvaluateList(@RequestParam("shopId") Long shopId,
                                                 Integer page,Integer pageSize){

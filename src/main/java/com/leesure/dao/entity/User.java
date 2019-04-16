@@ -21,7 +21,7 @@ public class User {
 
     private String email;
     //是否为管理员
-    private String isAdmin;
+    private Boolean isAdmin;
     //头像路径
     private String avatar;
 }

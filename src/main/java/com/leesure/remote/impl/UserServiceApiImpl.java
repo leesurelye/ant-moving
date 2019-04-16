@@ -142,6 +142,7 @@ public class UserServiceApiImpl implements UserServiceApi {
         try{
             boolean data = orderService.updateOrderState(orderId, OrderEnum.COMMIT);
             result.setData(data);
+            result.setSuccess(data);
         }catch (SystemException exception){
             result.setError(exception.getCode(),exception.getMessage());
             log.error(exception.getMessage(),exception);

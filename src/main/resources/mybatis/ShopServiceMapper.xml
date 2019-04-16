@@ -111,5 +111,10 @@
     <select id="countService" resultType="java.lang.Integer">
         SELECT count(id) FROM shop_service where shop_id=#{shopId}
     </select>
+
+
+    <select id="getShopId" resultType="java.lang.Long">
+        SELECT id FROM shop_detail WHERE  manager_id = #{adminId}
+    </select>
 </mapper>
 

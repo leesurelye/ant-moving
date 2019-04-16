@@ -62,4 +62,11 @@ public interface ShopServiceApi {
      * @return 商品详细信息
      */
     PageResult<ShopService> getShopService(Long shopId,Integer page,Integer pageSize);
+
+    /**
+     * 获取商店Id
+     * @param adminId adminId
+     * @return shopId
+     */
+    PlainResult<Long> getShopId(Long adminId);
 }

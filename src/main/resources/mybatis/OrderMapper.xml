@@ -134,6 +134,7 @@
         <foreach collection="map" index="key" item="value">
             ${key} = #{value}
         </foreach>
+        and is_deleted=0
         LIMIT ${begin} ,${pageSize}
     </select>
 

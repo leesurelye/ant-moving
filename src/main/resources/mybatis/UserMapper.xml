@@ -7,6 +7,7 @@
         <result column="name" property="name"/>
         <result column="password" property="password"/>
         <result column="phone" property="phone"/>
+        <result column="is_admin" property="isAdmin"/>
     </resultMap>
 
     <!--auto generated Code-->

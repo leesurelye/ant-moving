@@ -137,4 +137,17 @@ public class ShopServiceApiImpl implements ShopServiceApi {
         }
         return result;
     }
+
+    @Override
+    public PlainResult<Long> getShopId(Long adminId) {
+        PlainResult<Long> result = new PlainResult<>();
+        try{
+            result.setData(detailService.getShopId(adminId));
+        }catch (Exception e){
+            result.setError(SystemErrorCode.SYSTEM_UNKNOWN_ERROR,
+                    e.getMessage());
+            log.error(e.getMessage(),e);
+        }
+        return result;
+    }
 }

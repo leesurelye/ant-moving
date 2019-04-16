@@ -116,7 +116,7 @@ public class UserController {
 
     @RequestMapping("/removeEvaluate")
     public PlainResult<Boolean> removeEvaluate(@RequestParam("orderId") Long orderId){
-        //todo 删除订单Id
+        //todo 删除评价
         return null;
     }
 
