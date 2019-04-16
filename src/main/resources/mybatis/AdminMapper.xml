@@ -3,7 +3,7 @@
 <mapper namespace="com.leesure.dao.mybatis.AdminMapper">
     <!--auto generated Code-->
     <resultMap id="AllColumnMap" type="com.leesure.dao.entity.Admin">
-        <result column="id" property="id"/>
+        <result column="id" property="id" javaType="java.lang.Long"/>
         <result column="shop_id" property="shopId"/>
         <result column="account" property="account"/>
         <result column="password" property="password"/>

@@ -20,7 +20,7 @@ public class AntMoveApplicationTests {
 
 	@Test
 	public void contextLoads() {
-	    utils.sendValidateCode("1559331512@qq.com","1234");
+	    utils.sendValidateCode("56439441@qq.com","1234");
 	}
 }
 
